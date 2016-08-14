@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<meta charset="utf-8" >
+
+<style media="screen">
+    canvas{
+        border: 1px solid #000;
+    }
+</style>
+
+<div id="article">
+</div>
+
+<script src="../src/global.js"></script>
+<script src="../src/cursor.js"></script>
+<script src="../src/page.js"></script>
+<script src="../src/document.js"></script>
+<script src="../src/commands/global.js"></script>
+<script src="../src/commands/normal_word.js"></script>
+<script src="../src/commands/paragraph.js"></script>
+
+<script>
+    var doc = new latex.document('haha');
+    var page = doc.append_new_page(document.getElementById('article'), 595, 842);
+    page.get_cursor_instance()
+        .set_padding({top : 30, bottom : 842 - 25, left : 30, right : 595 - 25}).set_cursor_point_y(30);
+    console.log(latex.commands.paragraph(page.get_cursor_instance(), 2, '你好世界', '新儿我爱你。'));
+</script>
