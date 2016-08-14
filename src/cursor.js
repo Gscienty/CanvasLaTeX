@@ -1,13 +1,13 @@
 (function(root){
     'use strict';
-    function cursor(canvas, top, right, bottom, left){
+
+    function latex_cursor(canvas, top, right, bottom, left){
         var ctx = canvas.getContext('2d');
-        var font_size = 12;
+        var font_size = 14;
         var font_family = 'new times roman';
         var font_color = 'black';
         var font_style = 'normal';
         var line_spacing = 5;
-        var align = 'left';
         var padding = {
             top : top,
             left : left,
@@ -33,9 +33,6 @@
 
         this.get_line_spacing = function() { return line_spacing; };
         this.set_line_spacing = function(value) { line_spacing = value; return this; };
-
-        this.get_align = function() { return align; };
-        this.set_align = function(value) { align = value; return this; };
 
         this.get_padding = function() { return padding; };
         this.set_padding = function(value) { padding = value; return this; };
@@ -72,58 +69,60 @@
         };
 
         this.line_feed = function(){
-            cursor_point.y = cursor_point.y + font_size + line_spacing;
-            return this;
+            this.set_cursor_point_y(this.get_cursor_point_y() + this.get_font_size() + this.get_line_spacing());
+            return this.get_cursor_point_y() < this.get_padding_bottom();
         };
 
-        this.crlf = function(){
-            this.carriage_return();
-            this.line_feed();
-            return this;
-        };
-
-        this.write_segment = function(text){
-            assemble_ctx();
-            var text_height = ctx.measureText(text).height;
-            var alpha_count = text.length;
-            if(align === 'left'){
-                this.crlf();
-                for(var alpha_iter = 0; alpha_iter < alpha_count; alpha_iter++){
-                    var alpha = text[alpha_iter];
-                    var alpha_width = ctx.measureText(alpha).width;
-                    if(cursor_point.x + alpha_width <= padding.right){
-                        ctx.fillText(alpha, this.get_cursor_point_x(), this.get_cursor_point_y());
-                        this.set_cursor_point_x(this.get_cursor_point_x() + alpha_width);
-                    }
-                    else{
-                        this.crlf();
-                        alpha_iter--;
-                    };
-                };
-            }
-            else if(align === 'center'){
-                var text_window = {
-                    start : 0,
-                    width : text.length
-                };
-                while(text_window.start < text.length - 1){
-                    var text_render_width = ctx.measureText(text.substring(text_window.start, text_window.start + text_window.width)).width;
-                    while(text_render_width > this.get_padding_right() - this.get_padding_left()){
-                        text_window.width = text_window.width - 1;
-                        text_render_width = ctx.measureText(text.substring(text_window.start, text_window.start + text_window.width)).width;
-                    };
-                    this.crlf();
-                    this.set_cursor_point_x(this.get_padding_left() + (this.get_padding_right() - this.get_padding_left() - text_render_width) / 2);
-                    ctx.fillText(text.substring(text_window.start, text_window.start + text_window.width), this.get_cursor_point_x(), this.get_cursor_point_y());
-
-                    text_window.start = text_window.start + text_window.width;
-                    text_window.width = text.length - text_window.start;
-                };
+        this.get_measure = function(text){
+            return {
+                width : ctx.measureText(text).width,
+                height : this.get_font_size() + this.get_line_spacing()
             };
+        };
 
-            return this;
+        this.write_word = function(word){
+            assemble_ctx();
+            if(ctx.measureText(word).width + this.get_cursor_point_x() < this.get_padding_right()){
+                ctx.fillText(word, this.get_cursor_point_x(), this.get_cursor_point_y());
+                this.set_cursor_point_x(this.get_cursor_point_x() + this.get_measure(word).width);
+                return true;
+            };
+            return false;
+        };
+
+        this.jump_space = function(width){
+            if(width + this.get_cursor_point_x() < this.get_padding_right()){
+                this.set_cursor_point_x(this.get_cursor_point_x() + width);
+                return true;
+            };
+            return false;
+        };
+
+        this.use_cfg = function(cfg){
+            this.set_font_size(cfg.font_size);
+            this.set_font_family(cfg.font_family);
+            this.set_font_color(cfg.font_color);
+            this.set_font_style(cfg.font_style);
+            this.set_line_spacing(cfg.line_spacing);
         };
     };
 
-    root.cursor = cursor;
-})(this);
+    root.cursor = latex_cursor;
+
+    root.cursor_default_cfg = {
+        paragraph_body : {
+            font_size : 14,
+            font_family : 'new times roman',
+            font_color : 'black',
+            font_style : 'normal',
+            line_spacing : 10
+        },
+        paragraph_title : {
+            font_size : 14,
+            font_family : 'new times roman',
+            font_color : 'black',
+            font_style : 'bold',
+            line_spacing : 10
+        }
+    };
+})(this.latex);
