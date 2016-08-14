@@ -4,5 +4,8 @@
 
 <script>
     var cursor = new cursor(document.getElementById('canvas'), 100, 700, 500, 100);
-    cursor.writeText("HahahaHahahaHahah");
+    cursor
+        .set_font_size(55).set_align('center').set_font_style('bold').write_segment("Hello World")
+        .set_line_spacing(10).set_align('left').set_font_size(24).set_font_color('#FF00FF').set_font_style('bold').write_segment("Cursor Test.")
+        .set_padding_left(cursor.get_padding_left() + 40).set_font_color('black').set_font_size(24).write_segment('I Love China.');
 </script>
