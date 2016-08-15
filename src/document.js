@@ -5,7 +5,7 @@
         var document_name = name;
         var pages = [];
 
-        this.append_new_page = function(area_dom, width, height){
+        this.append_page = function(area_dom, width, height){
             var canvas_element = document.createElement('canvas');
             area_dom.appendChild(canvas_element);
             var new_page = new root.page(canvas_element, width, height);

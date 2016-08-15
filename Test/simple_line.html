@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<meta charset="utf-8" >
+
+<style media="screen">
+    canvas{
+        border: 1px solid #000;
+    }
+</style>
+
+<div id="article">
+</div>
+
+<script src="../src/global.js"></script>
+<script src="../src/cursor.js"></script>
+<script src="../src/blocks/simple.js"></script>
+<script src="../src/blocks/paragraph.js"></script>
+<script src="../src/blocks/regexs.js"></script>
+<script src="../src/line_buf.js"></script>
+<script src="../src/page.js"></script>
+<script src="../src/document.js"></script>
+
+<script>
+    var doc = new latex.document('haha');
+    var page = doc.append_page(document.getElementById('article'), 595, 842);
+    page.get_cursor().set_y(30).set_x(30);
+
+    var line = new latex.line_buf(page.get_cursor());
+
+    line.append('\\paragraph{Hello World} I Love China');
+    line.render();
+</script>
