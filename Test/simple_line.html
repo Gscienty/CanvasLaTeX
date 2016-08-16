@@ -13,8 +13,10 @@
 <script src="../src/global.js"></script>
 <script src="../src/cursor.js"></script>
 <script src="../src/blocks/simple.js"></script>
+<script src="../src/blocks/jump.js"></script>
+<script src="../src/blocks/crlf.js"></script>
 <script src="../src/blocks/paragraph.js"></script>
-<script src="../src/blocks/regexs.js"></script>
+<script src="../src/blocks/section.js"></script>
 <script src="../src/line_buf.js"></script>
 <script src="../src/page.js"></script>
 <script src="../src/document.js"></script>
@@ -26,6 +28,6 @@
 
     var line = new latex.line_buf(page.get_cursor());
 
-    line.append('\\paragraph{Hello World} I Love China');
+    line.append('\\section{Hello World} I Love China \\section{good}');
     line.render();
 </script>
