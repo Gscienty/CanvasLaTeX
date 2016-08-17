@@ -14,7 +14,6 @@
 <script src="../src/cursor.js"></script>
 <script src="../src/blocks/simple.js"></script>
 <script src="../src/blocks/jump.js"></script>
-<script src="../src/blocks/crlf.js"></script>
 <script src="../src/blocks/paragraph.js"></script>
 <script src="../src/blocks/section.js"></script>
 <script src="../src/line_buf.js"></script>
@@ -22,12 +21,13 @@
 <script src="../src/document.js"></script>
 
 <script>
-    var doc = new latex.document('haha');
-    var page = doc.append_page(document.getElementById('article'), 595, 842);
-    page.get_cursor().set_y(30).set_x(30);
-
-    var line = new latex.line_buf(page.get_cursor());
-
-    line.append('\\section{Hello World} I Love China \\section{good}');
-    line.render();
+    var doc = new latex.document(document.getElementById('article'));
+    doc.append_line((new latex.line_buf()).append('Hello'));
+    doc.append_line((new latex.line_buf()).append('\\section{World}'));
+    doc.append_line((new latex.line_buf()).append('\\subsection{China}'));
+    doc.append_line((new latex.line_buf()).append('呵呵哈哈吼吼吼吼'));
+    doc.append_line((new latex.line_buf()).append('\\subsubsection{Shandong}'));
+    doc.append_line((new latex.line_buf()).append('\\subsection{US}'));
+    doc.append_line((new latex.line_buf()).append('\\section{China}'));
+    doc.render();
 </script>
