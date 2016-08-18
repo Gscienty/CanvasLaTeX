@@ -5,15 +5,15 @@
     root.latex.blocks = {};
 
     root.latex.blocks.abstract_block = {
-        get_width : function() {
-            return this.get_block_width();
+        get_width : function(cursor) {
+            return this.get_block_width(cursor);
         },
 
-        get_height : function() {
-            return this.get_block_height();
+        get_height : function(cursor) {
+            return this.get_block_height(cursor);
         },
-        render : function() {
-            this.block_render();
+        render : function(cursor) {
+            this.block_render(cursor);
             return this;
         }
     };

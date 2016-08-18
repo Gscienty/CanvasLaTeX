@@ -1,39 +1,33 @@
 (function(root, cfg){
     'use strict';
 
-    root.paragraph = function(line_buf, cursor){
+    root.paragraph = function(line_buf){
         var self = {};
         self.line_buf = line_buf;
-        self.cursor = cursor;
         self.cfg = cfg;
-        self.width = -1;
-        self.height = -1;
 
-        this.get_block_width = function(){
-            if(self.with == -1){
-                var remember_origin_cfg = self.cursor.get_cfg();
-                self.cursor.set_cfg(self.cfg);
-                self.width = self.line_buf.get_width();
-                self.cursor.set_cfg(remember_origin_cfg);
-            };
-            return self.width;
+        this.get_block_width = function(cursor){
+            var remember_origin_cfg = cursor.get_cfg();
+            cursor.set_cfg(self.cfg);
+            var result = self.line_buf.get_width(cursor) + cursor.get_size();
+            cursor.set_cfg(remember_origin_cfg);
+            return result;
         };
 
-        this.get_block_height = function(){
-            if(self.height == -1){
-                var remember_origin_cfg = self.cursor.get_cfg();
-                self.cursor.set_cfg(self.cfg);
-                self.height = self.line_buf.get_height();
-                self.cursor.set_cfg(remember_origin_cfg);
-            };
-            return self.height;
+        this.get_block_height = function(cursor){
+            var remember_origin_cfg = cursor.get_cfg();
+            cursor.set_cfg(self.cfg);
+            var result = self.line_buf.get_height(cursor);
+            cursor.set_cfg(remember_origin_cfg);
+            return result;
         };
 
-        this.block_render = function(){
-            var remember_origin_cfg = self.cursor.get_cfg();
-            self.cursor.set_cfg(self.cfg);
-            self.line_buf.render();
-            self.cursor.set_cfg(remember_origin_cfg);
+        this.block_render = function(cursor){
+            var remember_origin_cfg = cursor.get_cfg();
+            cursor.set_cfg(self.cfg);
+            self.line_buf.render(cursor);
+            cursor.set_x(self.cursor.get_x() + cursor.get_size());
+            cursor.set_cfg(remember_origin_cfg);
         };
 
     };

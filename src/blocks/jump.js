@@ -1,23 +1,23 @@
 (function(root){
     'use strict';
 
-    root.simple = function simple(word){
+    root.jump = function(spacing){
         var self = {};
-        self.word = word;
+        self.spacing = spacing;
 
         this.get_block_width = function(cursor){
-            return cursor.get_measure(self.word).width;
+            return cursor.get_size() * self.spacing;
         };
 
         this.get_block_height = function(cursor){
-            return cursor.get_measure(self.word).height;
+            return cursor.get_measure('').height;
         };
 
         this.block_render = function(cursor){
-            cursor.write_word(self.word);
+            cursor.jump_space(self.spacing);
         };
     };
 
-    root.simple.prototype = root.abstract_block;
+    root.jump.prototype = root.abstract_block;
 
 })(this.latex.blocks);

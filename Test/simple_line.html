@@ -16,18 +16,15 @@
 <script src="../src/blocks/jump.js"></script>
 <script src="../src/blocks/paragraph.js"></script>
 <script src="../src/blocks/section.js"></script>
+<script src="../src/blocks/math/frac.js"></script>
 <script src="../src/line_buf.js"></script>
 <script src="../src/page.js"></script>
 <script src="../src/document.js"></script>
 
 <script>
     var doc = new latex.document(document.getElementById('article'));
-    doc.append_line((new latex.line_buf()).append('Hello'));
-    doc.append_line((new latex.line_buf()).append('\\section{World}'));
-    doc.append_line((new latex.line_buf()).append('\\subsection{China}'));
-    doc.append_line((new latex.line_buf()).append('呵呵哈哈吼吼吼吼'));
-    doc.append_line((new latex.line_buf()).append('\\subsubsection{Shandong}'));
-    doc.append_line((new latex.line_buf()).append('\\subsection{US}'));
-    doc.append_line((new latex.line_buf()).append('\\section{China}'));
+    doc.append_line((new latex.line_buf()).append('gaga=\\frac{a}{bbb6668}asdasd'));
+    doc.append_line((new latex.line_buf()).append('GGG'));
+    doc.append_line((new latex.line_buf()).append('GGG'));
     doc.render();
 </script>

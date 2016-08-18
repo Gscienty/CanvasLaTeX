@@ -1,4 +1,39 @@
 (function(root){
+    root.cursor_default_cfg = {
+        paragraph_body : {
+            size : 14,
+            family : 'new times roman',
+            color : 'black',
+            style : 'normal'
+        },
+        paragraph_title : {
+            size : 14,
+            family : 'new times roman',
+            color : 'black',
+            style : 'bold'
+        },
+        h1 : {
+            size : 24,
+            family : 'new times roman',
+            color : 'black',
+            style : 'bold'
+        },
+        h2 : {
+            size : 18,
+            family : 'new times roman',
+            color : 'black',
+            style : 'bold'
+        },
+        h3 : {
+            size : 16,
+            family : 'new times roman',
+            color : 'black',
+            style : 'bold'
+        }
+    };
+})(this.latex);
+
+(function(root){
     'use strict';
 
     function latex_cursor(canvas, top, right, bottom, left){
@@ -9,7 +44,6 @@
         self.family = 'new times roman';
         self.color = 'black';
         self.style = 'normal';
-        self.line_spacing = 5;
         self.cursor = {
             x : left,
             y : top
@@ -26,9 +60,6 @@
 
         this.get_style = function() { return self.style; };
         this.set_style = function(value) { self.style = value; return this; };
-
-        this.get_line_spacing = function() { return self.line_spacing; };
-        this.set_line_spacing = function(value) { self.line_spacing = value; return this; };
 
         this.get_cursor = function() { return self.cursor; };
         this.set_cursor = function(value) { self.cursor = value; return this; };
@@ -47,7 +78,7 @@
         this.get_measure = function(text){
             return {
                 width : self.ctx.measureText(text).width,
-                height : this.get_size() + this.get_line_spacing()
+                height : this.get_size()
             };
         };
 
@@ -57,16 +88,21 @@
             this.set_x(this.get_x() + this.get_measure(word).width);
         };
 
-        this.jump_space = function(width){
-            this.set_x(this.get_x() + width);
+        this.jump_space = function(spacing){
+            this.set_x(this.get_x() + spacing * this.get_size());
+        };
+
+        this.draw_line = function(x1, y1, x2, y2){
+            self.ctx.moveTo(x1, y1);
+            self.ctx.lineTo(x2, y2);
+            self.ctx.stroke();
         };
 
         this.set_cfg = function(cfg){
             this.set_size(cfg.size);
             this.set_family(cfg.family);
             this.set_color(cfg.color);
-            this.set_style(cfg.style);
-            this.set_line_spacing(cfg.line_spacing)
+            this.set_style(cfg.style)
         };
 
         this.get_cfg = function(){
@@ -74,28 +110,10 @@
                 size : this.get_size(),
                 family : this.get_family(),
                 color : this.get_color(),
-                style : this.get_style(),
-                line_spacing : this.get_line_spacing()
+                style : this.get_style()
             };
         };
     };
 
     root.cursor = latex_cursor;
-
-    root.cursor_default_cfg = {
-        paragraph_body : {
-            size : 14,
-            family : 'new times roman',
-            color : 'black',
-            style : 'normal',
-            line_spacing : 10
-        },
-        paragraph_title : {
-            size : 14,
-            family : 'new times roman',
-            color : 'black',
-            style : 'bold',
-            line_spacing : 10
-        }
-    };
 })(this.latex);
