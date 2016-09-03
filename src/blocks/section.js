@@ -27,13 +27,13 @@
         };
     };
 
-    root.section_cfg = new local_section_cfg();
-})(this.latex.blocks);
+    root.blocks.section_cfg = new local_section_cfg();
+})(this.latex);
 
 (function(root, cfg){
     'use strict';
 
-    root.origin_section = function(line_buf, cfg_h, num){
+    root.blocks.origin_section = function(line_buf, cfg_h, num){
         var self = {};
         self.line_buf = line_buf;
         self.cfg = cfg_h;
@@ -65,15 +65,35 @@
         };
     };
 
-    root.origin_section.prototype = root.abstract_block;
+    root.blocks.origin_section.prototype = root.blocks.abstract_block;
 
-    root.section = function(line_buf){
-        return new root.origin_section(line_buf, cfg.h1, root.section_cfg.get_new_section_id());
+    root.blocks.section = function(line_buf){
+        return new root.blocks.origin_section(line_buf, cfg.h1, root.blocks.section_cfg.get_new_section_id());
     };
-    root.subsection = function(line_buf){
-        return new root.origin_section(line_buf, cfg.h2, root.section_cfg.get_new_sub_section_id());
+
+    root.blocks.section.build = function(alpha){
+        const block_length = 8;
+        const param_length = root.blocks.get_param_length(alpha.substring(block_length));
+        return [alpha.substring(block_length + param_length + 2), new root.blocks.section((new root.line_buf()).append(alpha.substr(block_length + 1, param_length)))];
     };
-    root.subsubsection = function(line_buf){
-        return new root.origin_section(line_buf, cfg.h3, root.section_cfg.get_new_sub_sub_section_id());
+
+    root.blocks.subsection = function(line_buf){
+        return new root.blocks.origin_section(line_buf, cfg.h2, root.blocks.section_cfg.get_new_sub_section_id());
     };
-})(this.latex.blocks, this.latex.cursor_default_cfg);
+
+    root.blocks.subsection.build = function(alpha){
+        const block_length = 11;
+        const param_length = root.blocks.get_param_length(alpha.substring(block_length));
+        return [alpha.substring(block_length + param_length + 2), new root.blocks.subsection((new root.line_buf()).append(alpha.substr(block_length + 1, param_length)))];
+    };
+
+    root.blocks.subsubsection = function(line_buf){
+        return new root.blocks.origin_section(line_buf, cfg.h3, root.blocks.section_cfg.get_new_sub_sub_section_id());
+    };
+
+    root.blocks.subsubsection.build = function(alpha){
+        const block_length = 14;
+        const param_length = root.blocks.get_param_length(alpha.substring(block_length));
+        return [alpha.substring(block_length + param_length + 2), new root.blocks.subsubsection((new root.line_buf()).append(alpha.substr(block_length + 1, param_length)))];
+    };
+})(this.latex, this.latex.cursor_default_cfg);

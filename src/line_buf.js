@@ -29,36 +29,20 @@
         };
 
         function word_transfer_block(alpha){
-            if(/^\\paragraph\{(.+?)\}/.test(alpha)){
-                var block_segs = /^\\paragraph\{(.+?)\}/.exec(alpha);
-                var block_line_buf = new root.line_buf();
-                block_line_buf.append(block_segs[1]);
-                return [alpha.substring(block_segs[0].length), new root.blocks.paragraph(block_line_buf)];
+            if(/^\\paragraph/.test(alpha)){
+                return root.blocks.paragraph.build(alpha);
             }
-            else if(/^\\section\{(.+?)\}/.test(alpha)){
-                var block_segs = /^\\section\{(.+?)\}/.exec(alpha);
-                var block_line_buf = new root.line_buf();
-                block_line_buf.append(block_segs[1]);
-                return [alpha.substring(block_segs[0].length), new root.blocks.section(block_line_buf)];
+            else if(/^\\section/.test(alpha)){
+                return root.blocks.section.build(alpha);
             }
             else if(/^\\subsection\{(.+?)\}/.test(alpha)){
-                var block_segs = /^\\subsection\{(.+?)\}/.exec(alpha);
-                var block_line_buf = new root.line_buf();
-                block_line_buf.append(block_segs[1]);
-                return [alpha.substring(block_segs[0].length), new root.blocks.subsection(block_line_buf)];
+                return root.blocks.subsection.build(alpha);
             }
-            else if(/^\\subsubsection\{(.+?)\}/.test(alpha)){
-                var block_segs = /^\\subsubsection\{(.+?)\}/.exec(alpha);
-                var block_line_buf = new root.line_buf();
-                block_line_buf.append(block_segs[1]);
-                return [alpha.substring(block_segs[0].length), new root.blocks.subsubsection(block_line_buf)];
+            else if(/^\\subsubsection/.test(alpha)){
+                return root.blocks.subsubsection.build(alpha);
             }
-            else if(/^\\frac\{(.*?)\}\{(.*?)\}/.test(alpha)){
-                var block_segs = /^\\frac\{(.*?)\}\{(.*?)\}/.exec(alpha);
-                var block_line_bufs = [new root.line_buf(), new root.line_buf()];
-                block_line_bufs[0].append(block_segs[1]);
-                block_line_bufs[1].append(block_segs[2]);
-                return [alpha.substring(block_segs[0].length), new root.blocks.frac(block_line_bufs[0], block_line_bufs[1])];
+            else if(/^\\frac/.test(alpha)){
+                return root.blocks.frac.build(alpha);
             }
             else if(/^\\jump\{(\d+(\.\d+)?)\}/.test(alpha)){
                 var block_segs = /^\\jump\{(\d+(\.\d+)?)\}/.exec(alpha);

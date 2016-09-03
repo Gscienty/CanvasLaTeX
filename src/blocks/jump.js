@@ -1,7 +1,7 @@
 (function(root){
     'use strict';
 
-    root.jump = function(spacing){
+    root.blocks.jump = function(spacing){
         var self = {};
         self.spacing = spacing;
 
@@ -18,6 +18,11 @@
         };
     };
 
-    root.jump.prototype = root.abstract_block;
+    root.blocks.jump.prototype = root.blocks.abstract_block;
 
-})(this.latex.blocks);
+    root.blocks.jump.build = function(alpha){
+        const block_length = 5;
+        const param_length = root.blocks.get_param_length(alpha.substring(block_length));
+        return [alpha.substring(block_length + param_length + 2), new root.blocks.jump((new root.line_buf()).append(alpha.substr(block_length + 1, param_length)))];
+    };
+})(this.latex);

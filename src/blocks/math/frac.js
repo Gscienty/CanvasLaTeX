@@ -1,23 +1,19 @@
 (function(root){
     'use strict';
-    root.frac = function(line_buf_t, line_buf_b){
+    root.blocks.frac = function(line_buf_t, line_buf_b){
         self.line_bufs = [line_buf_t, line_buf_b];
         self.small_ratio = 0.9;
         self.spacing = 0.1;
         self.sur = 0.4;
 
-        function get_truth_width(cursor){
+        this.get_block_width = function(cursor){
             var member_size = cursor.get_size();
             cursor.set_size(self.small_ratio * member_size);
             var width = self.line_bufs[0].get_width(cursor);
             var width_ = self.line_bufs[1].get_width(cursor);
             if(width < width_) { width = width_; };
             cursor.set_size(member_size);
-            return width + 2 * self.sur * cursor.get_size();
-        }
-
-        this.get_block_width = function(cursor){
-            return get_truth_width(cursor) + 2 * self.sur * cursor.get_size();
+            return width * 1.1;
         };
 
         this.get_block_height = function(cursor){
@@ -30,7 +26,7 @@
 
         this.block_render = function(cursor){
             var member_size = cursor.get_size();
-            var width = get_truth_width(cursor);
+            var width = this.get_block_width(cursor);
             var origin_x = cursor.get_x() + self.sur * cursor.get_size();
             var origin_y = cursor.get_y();
             cursor.set_size(self.small_ratio * member_size);
@@ -47,12 +43,19 @@
                 origin_x + width,
                 origin_y - member_size / 2 + self.spacing * cursor.get_size());
 
-            cursor.set_x(origin_x + this.get_block_width(cursor));
+            cursor.set_x(origin_x + width);
             cursor.set_y(origin_y);
             cursor.set_size(member_size);
         };
     };
 
-    root.frac.prototype = root.abstract_block;
+    root.blocks.frac.prototype = root.blocks.abstract_block;
 
-})(this.latex.blocks);
+    root.blocks.frac.build = function(alpha){
+        const block_length = 5;
+        const param1_length = root.blocks.get_param_length(alpha.substring(block_length));
+        const param2_length = root.blocks.get_param_length(alpha.substring(block_length + param1_length + 2));
+        return [alpha.substring(block_length + param1_length + param2_length + 4), new root.blocks.frac((new root.line_buf()).append(alpha.substr(block_length + 1, param1_length)), (new root.line_buf()).append(alpha.substr(block_length + param1_length + 3, param2_length)))];
+    };
+
+})(this.latex);
