@@ -5,22 +5,24 @@
         var self = {};
         self.width = 0;
         self.height = 0;
-        self.buff = [];
+        self.blocks = [];
+
+        this.self = self;
 
         this.get_width = function(cursor) {
             var width = 0;
-            var len = self.buff.length;
+            var len = self.blocks.length;
             for(var i = 0; i < len; i++){
-                width = width + self.buff[i].get_width(cursor);
+                width = width + self.blocks[i].get_width(cursor);
             };
             return width;
         };
 
         this.get_height = function(cursor) {
             var height = 0;
-            var len = self.buff.length;
+            var len = self.blocks.length;
             for(var i = 0; i < len; i++){
-                var tmp_height = self.buff[i].get_height(cursor);
+                var tmp_height = self.blocks[i].get_height(cursor);
                 if(height < tmp_height){
                     height = tmp_height;
                 };
@@ -35,7 +37,7 @@
             else if(/^\\section/.test(alpha)){
                 return root.blocks.section.build(alpha);
             }
-            else if(/^\\subsection\{(.+?)\}/.test(alpha)){
+            else if(/^\\subsection/.test(alpha)){
                 return root.blocks.subsection.build(alpha);
             }
             else if(/^\\subsubsection/.test(alpha)){
@@ -44,9 +46,8 @@
             else if(/^\\frac/.test(alpha)){
                 return root.blocks.frac.build(alpha);
             }
-            else if(/^\\jump\{(\d+(\.\d+)?)\}/.test(alpha)){
-                var block_segs = /^\\jump\{(\d+(\.\d+)?)\}/.exec(alpha);
-                return [alpha.substring(block_segs[0].length), new root.blocks.jump(parseFloat(block_segs[1]))];
+            else if(/^\\jump/.test(alpha)){
+                return root.blocks.jump.build(alpha);
             }
             return [alpha.substring(1), new root.blocks.simple(alpha[0])];
 
@@ -56,7 +57,7 @@
             var alpha = word;
             while(alpha.length > 0){
                 var tuple = word_transfer_block(alpha);
-                self.buff.push(tuple[1]);
+                self.blocks.push(tuple[1]);
                 alpha = tuple[0];
             };
             return this;
@@ -67,7 +68,7 @@
             var offset = index;
             while(alpha.length > 0){
                 var tuple = word_transfer_block(alpha);
-                self.buff.splice(offset, 0, tuple[1]);
+                self.blocks.splice(offset, 0, tuple[1]);
                 alpha = tuple[0];
                 offset = offset + 1;
             };
@@ -75,9 +76,11 @@
         };
 
         this.render = function(cursor){
-            var buf_len = self.buff.length;
+            var buf_len = self.blocks.length;
+            var origin_y = cursor.get_y();
             for(var i = 0; i < buf_len; i++){
-                self.buff[i].render(cursor);
+                cursor.set_y(origin_y + self.blocks[i].get_height(cursor) / 2);
+                self.blocks[i].render(cursor);
             };
             return this;
         };

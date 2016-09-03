@@ -23,15 +23,7 @@
 
 <script>
     var doc = new latex.document(document.getElementById('article'));
-    doc.append_line((new latex.line_buf()).append('gaga=\\frac{aaaaaaaaaaaaaaaaaaaaaaaaa}{aa}asdasd'));
-    doc.append_line((new latex.line_buf()).append('\\paragraph{123456}'));
-    doc.append_line((new latex.line_buf()).append('\\section{123456}'));
-    doc.append_line((new latex.line_buf()).append('123123123123123123235额的房产税的粉红色空腹喝水了'));
-    doc.append_line((new latex.line_buf()).append('\\subsection{123456}'));
-    doc.append_line((new latex.line_buf()).append('\\subsection{123456}'));
-    doc.append_line((new latex.line_buf()).append('\\subsection{123456}'));
-    doc.append_line((new latex.line_buf()).append('\\section{123456}'));
-    doc.append_line((new latex.line_buf()).append('\\subsection{123456}'));
-    doc.append_line((new latex.line_buf()).append('GGG\\jump{1}hahah'));
-    doc.render();
+    doc.append_page().get_cursor().set_size(52);
+    doc.append_line((new latex.line_buf()).append('\\frac{1}{2\\frac{3}{4\\frac{5}{6\\frac{7}{8\\frac{9}{10\\frac{11}{12}}}}}}'))
+    doc.render(0, 0);
 </script>
