@@ -39,7 +39,7 @@
                 };
             };
             
-            return [alpha.substring(1), new root.blocks.simple(alpha[0])];
+            return root.blocks.simple.build(alpha);
 
         };
 

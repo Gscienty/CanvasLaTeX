@@ -1,7 +1,7 @@
 (function(root){
     'use strict';
 
-    root.blocks.simple = function simple(word){
+    root.blocks.simple = function simple(word, top_line_buf, bottom_line_buf){
         var self = {};
         self.word = word;
 
@@ -19,5 +19,10 @@
     };
 
     root.blocks.simple.prototype = root.blocks.abstract_block;
+
+    root.blocks.simple.build = function(alpha){
+        if(/^\\./.test(alpha)) return [alpha.substring(2), new root.blocks.simple(alpha[1])];
+        else return [alpha.substring(1), new root.blocks.simple(alpha[0])];
+    };
 
 })(this.latex);

@@ -78,7 +78,7 @@
             var operation_height = get_operation_height(cursor);
 
             cursor.set_x(origin_x + (width - operation_width) / 2);
-            cursor.set_y(origin_y - start_height - operation_height * self.vertical_spacing);
+            cursor.set_y(origin_y - start_height - operation_height * self.vertical_spacing - operation_height * 0.05);
             cursor.set_size(member * self.big_ratio);
             cursor.write_word(self.operation);
 
@@ -92,6 +92,8 @@
             self.line_bufs[1].render(cursor);
 
             cursor.set_size(member);
+
+            cursor.set_x(origin_x + width);
         };
     };
 

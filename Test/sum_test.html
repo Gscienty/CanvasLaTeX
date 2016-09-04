@@ -28,8 +28,8 @@
                 bottom : 812,
                 line_spacing : 5
             });
-    doc.append_page().get_cursor().set_size(24);
+    doc.append_page().get_cursor().set_size(36);
     
-    doc.append_line((new latex.line_buf()).append('f(x) = \\sum_{i=1}^{N}'));
+    doc.append_line((new latex.line_buf()).append('f(x) = \\sum_{i=1}^{N} i * 1'));
     doc.render(0, 0);
 </script>
