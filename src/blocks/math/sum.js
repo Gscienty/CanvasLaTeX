@@ -71,15 +71,25 @@
             var width = this.get_block_width(cursor);
             var height = this.get_block_height(cursor);
             var limit_height = get_limit_height(cursor);
+            var limit_width = get_limit_width(cursor);
             var start_height = get_start_height(cursor);
+            var start_width = get_start_width(cursor);
             var operation_width = get_operation_width(cursor);
             var operation_height = get_operation_height(cursor);
 
             cursor.set_x(origin_x + (width - operation_width) / 2);
-            cursor.set_x(origin_x + (width - operation_width) / 2);
-
+            cursor.set_y(origin_y - start_height - operation_height * self.vertical_spacing);
             cursor.set_size(member * self.big_ratio);
             cursor.write_word(self.operation);
+
+            cursor.set_x(origin_x + (width - start_width) / 2);
+            cursor.set_y(origin_y);
+            cursor.set_size(member * self.small_ratio);
+            self.line_bufs[0].render(cursor);
+
+            cursor.set_x(origin_x + (width - limit_width) / 2);
+            cursor.set_y(origin_y - start_height - operation_height * (1 + 2 * self.vertical_spacing));
+            self.line_bufs[1].render(cursor);
 
             cursor.set_size(member);
         };

@@ -30,9 +30,6 @@
             });
     doc.append_page().get_cursor().set_size(24);
     
-    doc.append_line((new latex.line_buf()).append('∑\\sum_1'));
-    doc.append_line((new latex.line_buf()).append('L'));
-    doc.append_line((new latex.line_buf()).append('L'));
-    doc.append_line((new latex.line_buf()).append('L'));
+    doc.append_line((new latex.line_buf()).append('f(x) = \\sum_{i=1}^{N}'));
     doc.render(0, 0);
 </script>
