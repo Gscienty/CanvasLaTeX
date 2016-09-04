@@ -5,7 +5,8 @@
         var self = {};
         self.word = word;
         self.line_bufs = [top_line_buf, bottom_line_buf];
-        self.small_ratio = 0.5;
+        self.small_ratio = 0.6;
+        self.right_spacing = 0.1;
 
         this.get_block_width = function(cursor){
             var origin_width = cursor.get_measure(self.word).width;
@@ -13,14 +14,14 @@
             cursor.set_size(member * self.small_ratio);
             var width = origin_width + (function(a, b) { if(a > b) { return a;} else { return b;}; })(self.line_bufs[0].get_width(cursor), self.line_bufs[1].get_width(cursor));
             cursor.set_size(member);
-            return width;
+            return width + self.right_spacing * cursor.get_size();
         };
 
         this.get_block_height = function(cursor){
             var origin_height = cursor.get_measure(self.word).height;
             var member = cursor.get_size();
             cursor.set_size(member * self.small_ratio);
-            var height = origin_height + (self.line_bufs[0].get_height(cursor) + self.line_bufs[1].get_height(cursor)) / 2;
+            var height = origin_height + (function(a, b) { if(a > b) { return a;} else { return b;}; })(self.line_bufs[0].get_height(cursor), self.line_bufs[1].get_height(cursor));
             cursor.set_size(member);
             return height;
         };
@@ -33,21 +34,20 @@
             var origin_height = cursor.get_measure(self.word).height;
 
             cursor.set_size(member * self.small_ratio);
-            var top_height = self.line_bufs[0].get_height(cursor);
-            var bottom_height = self.line_bufs[1].get_height(cursor);
+            var tor_height = (function(a, b) { if(a > b) { return a;} else { return b;}; })(self.line_bufs[0].get_height(cursor), self.line_bufs[1].get_height(cursor));
 
             cursor.set_size(member);
-            cursor.set_y(origin_y - bottom_height / 2);
+            cursor.set_y(origin_y - tor_height / 2);
             cursor.write_word(self.word);
 
             cursor.set_size(member * self.small_ratio);
 
-            cursor.set_y(origin_y - bottom_height / 2);
-            cursor.set_x(origin_x + origin_width);
+            cursor.set_y(origin_y - tor_height / 2);
+            cursor.set_x(origin_x + origin_width + member * self.right_spacing);
             self.line_bufs[1].render(cursor);
 
-            cursor.set_y(origin_y - bottom_height / 2 - origin_height + top_height / 2);
-            cursor.set_x(origin_x + origin_width);
+            cursor.set_y(origin_y - tor_height / 4 - origin_height);
+            cursor.set_x(origin_x + origin_width + member * self.right_spacing);
             self.line_bufs[0].render(cursor);
 
             cursor.set_size(member);
