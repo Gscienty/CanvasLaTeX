@@ -100,4 +100,6 @@
         const param_length = root.blocks.get_param_length(alpha.substring(block_length));
         return [alpha.substring(block_length + param_length + 2), new root.blocks.subsubsection((new root.line_buf()).append(alpha.substr(block_length + 1, param_length)))];
     };
+
+    root.blocks.subsubsection.test = function(alpha) { return /^\\subsubsection/.test(alpha); };
 })(this.latex, this.latex.cursor_default_cfg);
