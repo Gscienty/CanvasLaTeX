@@ -57,4 +57,7 @@
         const block_length = 6;
         return [alpha.substring(block_length), new root.blocks.vdots()];
     };
+
+    root.blocks.vdots.test = function(alpha) { return /^\\vdots/.test(alpha); };
+
 })(this.latex);
