@@ -26,10 +26,13 @@
                 right : 565,
                 top : 30,
                 bottom : 812,
-                line_spacing : 15
+                line_spacing : 5
             });
     doc.append_page().get_cursor().set_size(24);
     
-    doc.append_line((new latex.line_buf()).append('\\sum_c^ab'));
+    doc.append_line((new latex.line_buf()).append('∑\\sum_1'));
+    doc.append_line((new latex.line_buf()).append('L'));
+    doc.append_line((new latex.line_buf()).append('L'));
+    doc.append_line((new latex.line_buf()).append('L'));
     doc.render(0, 0);
 </script>

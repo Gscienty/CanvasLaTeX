@@ -2,6 +2,87 @@
     root.blocks.sum = function(start_line_buf, limit_line_buf){
         var self = {};
         self.line_bufs = [start_line_buf, limit_line_buf];
+        self.operation = '∑';
+        self.small_ratio = 0.5;
+        self.big_ratio = 1.4;
+        self.vertical_spacing = 0.1;
+
+        function get_start_height(cursor){
+            var member = cursor.get_size();
+            cursor.set_size(member * self.small_ratio);
+            var height = self.line_bufs[0].get_height(cursor);
+            cursor.set_size(member);
+            return height;
+        };
+
+        function get_limit_height(cursor){
+            var member = cursor.get_size();
+            cursor.set_size(member * self.small_ratio);
+            var height = self.line_bufs[1].get_height(cursor);
+            cursor.set_size(member);
+            return height;
+        };
+
+        function get_operation_height(cursor){
+            var member = cursor.get_size();
+            cursor.set_size(member * self.big_ratio);
+            var height = cursor.get_measure(self.operation).height;
+            cursor.set_size(member);
+            return height;
+        };
+
+        function get_start_width(cursor){
+            var member = cursor.get_size();
+            cursor.set_size(member * self.small_ratio);
+            var width = self.line_bufs[0].get_width(cursor);
+            cursor.set_size(member);
+            return width;
+        };
+
+        function get_limit_width(cursor){
+            var member = cursor.get_size();
+            cursor.set_size(member * self.small_ratio);
+            var width = self.line_bufs[1].get_width(cursor);
+            cursor.set_size(member);
+            return width;
+        };
+
+        function get_operation_width(cursor){
+            var member = cursor.get_size();
+            cursor.set_size(member * self.big_ratio);
+            var width = cursor.get_measure(self.operation).width;
+            cursor.set_size(member);
+            return width;
+        };
+
+        this.get_block_width = function(cursor){
+            var max_func = function(a, b) { if (a > b) { return a; } else { return b;}; };
+            return max_func(max_func(get_start_width(cursor), get_limit_width(cursor)), get_operation_width(cursor));
+        };
+
+        this.get_block_height = function(cursor){
+            return get_start_height(cursor) + get_limit_height(cursor) + get_operation_height(cursor) * (1 + 2 * self.vertical_spacing);
+        };
+
+        this.block_render = function(cursor){
+            var member = cursor.get_size();
+            var origin_x = cursor.get_x();
+            var origin_y = cursor.get_y();
+            var width = this.get_block_width(cursor);
+            var height = this.get_block_height(cursor);
+            var limit_height = get_limit_height(cursor);
+            var start_height = get_start_height(cursor);
+            var operation_width = get_operation_width(cursor);
+            var operation_height = get_operation_height(cursor);
+
+            cursor.set_x(origin_x + (width - operation_width) / 2);
+            cursor.set_x(origin_x + (width - operation_width) / 2);
+
+            cursor.set_size(member * self.big_ratio);
+            cursor.write_word(self.operation);
+
+            cursor.set_size(member);
+        };
     };
 
     root.blocks.sum.prototype = root.blocks.abstract_block;
