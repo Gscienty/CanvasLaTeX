@@ -34,6 +34,6 @@
 
     root.blocks.it.build = function(alpha) {
         const param_length = root.blocks.get_param_length(alpha);
-        return [alpha.substring(param_length + 2), new root.blocks.it((new root.line_buf()).append(alpha.substr(5, param_length - 4)))];
+        return [alpha.substring(param_length + 2), new root.blocks.it((new root.line_buf()).append(alpha.substr(4, param_length - 3)))];
     };
 })(this.latex);
