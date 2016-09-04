@@ -89,6 +89,8 @@
         return [alpha.substring(block_length + param_length + 2), new root.blocks.subsection((new root.line_buf()).append(alpha.substr(block_length + 1, param_length)))];
     };
 
+    root.blocks.subsection.test = function(alpha) { return /^\\subsection/.test(alpha); };
+
     root.blocks.subsubsection = function(line_buf){
         return new root.blocks.origin_section(line_buf, cfg.h3, root.blocks.section_cfg.get_new_sub_sub_section_id());
     };
