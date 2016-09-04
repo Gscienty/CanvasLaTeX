@@ -38,31 +38,7 @@
                     };
                 };
             };
-
-            if(/^\\paragraph/.test(alpha)){
-                return root.blocks.paragraph.build(alpha);
-            }
-            else if(/^\\section/.test(alpha)){
-                return root.blocks.section.build(alpha);
-            }
-            else if(/^\\subsection/.test(alpha)){
-                return root.blocks.subsection.build(alpha);
-            }
-            else if(/^\\subsubsection/.test(alpha)){
-                return root.blocks.subsubsection.build(alpha);
-            }
-            else if(/^\\frac/.test(alpha)){
-                return root.blocks.frac.build(alpha);
-            }
-            else if(/^\\jump/.test(alpha)){
-                return root.blocks.jump.build(alpha);
-            }
-            else if(/^\\cdots/.test(alpha)){
-                return root.blocks.cdots.build(alpha);
-            }
-            else if(/^\\vdots/.test(alpha)){
-                return root.blocks.vdots.build(alpha);
-            }
+            
             return [alpha.substring(1), new root.blocks.simple(alpha[0])];
 
         };
