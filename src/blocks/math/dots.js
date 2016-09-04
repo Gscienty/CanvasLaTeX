@@ -34,7 +34,7 @@
         };
 
         this.get_block_height = function(cursor){
-            return cursor.get_measure(self.dots).height * 3;
+            return cursor.get_measure(self.dots).height * 2;
         };
 
         this.block_render = function(cursor){
@@ -42,9 +42,9 @@
             const origin_x = cursor.get_x();
             const dots_height = cursor.get_measure(self.dots).height;
             cursor.write_word(self.dots);
-            cursot.set_x(origin_x).set_y(origin_y - dots_height);
+            cursor.set_x(origin_x).set_y(origin_y - 0.5 * dots_height);
             cursor.write_word(self.dots);
-            cursot.set_x(origin_x).set_y(origin_y - 2 * dots_height);
+            cursor.set_x(origin_x).set_y(origin_y - dots_height);
             cursor.write_word(self.dots);
         };
     };
