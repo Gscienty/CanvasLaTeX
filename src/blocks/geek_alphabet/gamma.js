@@ -1,9 +1,9 @@
 (function(root){
     'use strict';
 
-    root.blocks.alpha = function(){
+    root.blocks.gamma = function(){
         var self = {};
-        self.word = 'α';
+        self.word = 'γ';
 
         this.get_block_width = function(cursor){
             return cursor.get_measure(self.word).width;
@@ -18,18 +18,19 @@
         };
     };
 
-    root.blocks.alpha.prototype = root.blocks.abstract_block;
+    root.blocks.gamma.prototype = root.blocks.abstract_block;
 
-    root.blocks.alpha.build = function(alpha){
+    root.blocks.gamma.build = function(alpha){
         const block_length = 6;
-        return [alpha.substring(block_length), new root.blocks.alpha()];
+        return [alpha.substring(block_length), new root.blocks.gamma()];
     };
 
-    root.blocks.alpha.test = function(alpha) { return /^\\alpha/.test(alpha); };
+    root.blocks.gamma.test = function(alpha) { return /^\\gamma/.test(alpha); };
 
-    root.blocks.A = function(){
+
+    root.blocks.Gamma = function(){
         var self = {};
-        self.word = 'A';
+        self.word = 'Γ';
 
         this.get_block_width = function(cursor){
             return cursor.get_measure(self.word).width;
@@ -44,13 +45,13 @@
         };
     };
 
-    root.blocks.A.prototype = root.blocks.abstract_block;
+    root.blocks.Gamma.prototype = root.blocks.abstract_block;
 
-    root.blocks.A.build = function(alpha){
-        const block_length = 2;
-        return [alpha.substring(block_length), new root.blocks.A()];
+    root.blocks.Gamma.build = function(alpha){
+        const block_length = 6;
+        return [alpha.substring(block_length), new root.blocks.Gamma()];
     };
 
-    root.blocks.A.test = function(alpha) { return /^\\A/.test(alpha); };
+    root.blocks.Gamma.test = function(alpha) { return /^\\Gamma/.test(alpha); };
 
 })(this.latex);
