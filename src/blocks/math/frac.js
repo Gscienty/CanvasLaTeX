@@ -67,4 +67,6 @@
         return [alpha.substring(block_length + param1_length + param2_length + 4), new root.blocks.frac((new root.line_buf()).append(alpha.substr(block_length + 1, param1_length)), (new root.line_buf()).append(alpha.substr(block_length + param1_length + 3, param2_length)))];
     };
 
+    root.blocks.frac.test = function(alpha) { return /^\\frac/.test(alpha); };
+
 })(this.latex);
