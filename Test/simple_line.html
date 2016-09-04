@@ -17,6 +17,7 @@
 <script src="../src/blocks/paragraph.js"></script>
 <script src="../src/blocks/section.js"></script>
 <script src="../src/blocks/math/frac.js"></script>
+<script src="../src/blocks/math/dots.js"></script>
 <script src="../src/line_buf.js"></script>
 <script src="../src/page.js"></script>
 <script src="../src/document.js"></script>
@@ -33,6 +34,6 @@
             });
     doc.append_page().get_cursor().set_size(24);
     
-    doc.append_line((new latex.line_buf()).append('a\\frac{1}{10\\frac{1}{10}}'));;
+    doc.append_line((new latex.line_buf()).append('a\\frac{1}{10\\frac{1}{10}}\\cdots\\vdots'));;
     doc.render(0, 0);
 </script>

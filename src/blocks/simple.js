@@ -1,7 +1,7 @@
 (function(root){
     'use strict';
 
-    root.simple = function simple(word){
+    root.blocks.simple = function simple(word){
         var self = {};
         self.word = word;
 
@@ -18,6 +18,6 @@
         };
     };
 
-    root.simple.prototype = root.abstract_block;
+    root.blocks.simple.prototype = root.blocks.abstract_block;
 
-})(this.latex.blocks);
+})(this.latex);

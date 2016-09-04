@@ -48,6 +48,12 @@
             else if(/^\\jump/.test(alpha)){
                 return root.blocks.jump.build(alpha);
             }
+            else if(/^\\cdots/.test(alpha)){
+                return root.blocks.cdots.build(alpha);
+            }
+            else if(/^\\vdots/.test(alpha)){
+                return root.blocks.vdots.build(alpha);
+            }
             return [alpha.substring(1), new root.blocks.simple(alpha[0])];
 
         };
