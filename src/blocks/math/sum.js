@@ -3,7 +3,7 @@
         var self = {};
         self.line_bufs = [start_line_buf, limit_line_buf];
         self.operation = '∑';
-        self.small_ratio = 0.5;
+        self.small_ratio = 0.6;
         self.big_ratio = 1.4;
         self.vertical_spacing = 0.1;
 

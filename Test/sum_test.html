@@ -14,6 +14,7 @@
 <script src="../src/cursor.js"></script>
 <script src="../src/blocks/simple.js"></script>
 <script src="../src/blocks/math/sum.js"></script>
+<script src="../src/blocks/math/dots.js"></script>
 <script src="../src/blocks/math/prod.js"></script>
 <script src="../src/blocks/math/times.js"></script>
 <script src="../src/blocks/math/infty.js"></script>
@@ -35,10 +36,12 @@
     doc.append_page().get_cursor().set_size(24);
     
     doc.append_line((new latex.line_buf()).append('Taylor formula :'));
-    doc.get_page_by_number(0).get_cursor().set_style('Italic');
     doc.append_line((new latex.line_buf()).append('f(x) = \\sum_{i=0}^{\\infty}\\frac{f^{(i)}(a)}{i!}(x - a)^i + R_n(x)'));
     doc.append_line((new latex.line_buf()).append(' '));
     doc.append_line((new latex.line_buf()).append(' '));
     doc.append_line((new latex.line_buf()).append('LaTeX code: f(x) = \\\\sum\\_\\{i=0\\}\\^{\\\\infty}\\\\frac\\{f\\^\\{(i)\\}(a)\\}\\{i!\\}(x - a)\\^i + R\\_n(x)'));
+    doc.append_line((new latex.line_buf()).append(' '));
+    doc.append_line((new latex.line_buf()).append(' '));
+    doc.append_line((new latex.line_buf()).append('\\sum_{n=1}^{\\infty} \\frac{1}{n} = 1 + \\frac{1}{2} + \\frac{1}{3} + \\frac{1}{4} + \\cdots + \\frac{1}{n} + \\cdots'));
     doc.render(0, 0);
 </script>

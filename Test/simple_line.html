@@ -35,6 +35,6 @@
             });
     doc.append_page().get_cursor().set_size(24);
     
-    doc.append_line((new latex.line_buf()).append('a\\frac{1}{10\\frac{1}{10}}\\cdots \\vdots \\bf{haha}haha\\bf{hehehe}'));;
+    doc.append_line((new latex.line_buf()).append('a\\frac{1}{10\\frac{1}{10}}\\cdots \\vdots {\\bf haha}haha{\\bf hehehe}'));
     doc.render(0, 0);
 </script>

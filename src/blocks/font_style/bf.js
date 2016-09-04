@@ -30,11 +30,10 @@
 
     root.blocks.bf.prototype = root.blocks.abstract_block;
     
-    root.blocks.bf.test = function(alpha) { return /^\\bf/.test(alpha); };
+    root.blocks.bf.test = function(alpha) { return /^{\\bf/.test(alpha); };
 
     root.blocks.bf.build = function(alpha) {
-        const block_length = 3;
-        const param_length = root.blocks.get_param_length(alpha.substring(block_length));
-        return [alpha.substring(block_length + param_length + 2), new root.blocks.bf((new root.line_buf()).append(alpha.substr(block_length + 1, param_length)))];
+        const param_length = root.blocks.get_param_length(alpha);
+        return [alpha.substring(param_length + 2), new root.blocks.bf((new root.line_buf()).append(alpha.substr(5, param_length - 4)))];
     };
 })(this.latex);

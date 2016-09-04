@@ -3,9 +3,9 @@
     root.blocks.frac = function(line_buf_t, line_buf_b){
         var self = {};
         self.line_bufs = [line_buf_t, line_buf_b];
-        self.small_ratio = 0.7;
-        self.left_right_spacing = 0.5;
-        self.vertical_spacing = 0.1;
+        self.small_ratio = 0.9;
+        self.left_right_spacing = 0.1;
+        self.vertical_spacing = 0.2;
 
         this.get_block_width = function(cursor){
             var member_size = cursor.get_size();
@@ -23,13 +23,13 @@
             var bottom_height = self.line_bufs[1].get_height(cursor);
             var harf_height = (function(a, b){if(a > b) { return a; } else { return b;}; })(top_height, bottom_height);
             cursor.set_size(member_size);
-            return harf_height * 2;
+            return harf_height * 2 + self.vertical_spacing * cursor.get_size() * 5;
         };
 
         this.block_render = function(cursor){
             var member_size = cursor.get_size();
             var origin_x = cursor.get_x() + self.left_right_spacing * member_size;
-            var origin_y = cursor.get_y();
+            var origin_y = cursor.get_y() - self.vertical_spacing * member_size;
 
             cursor.set_size(self.small_ratio * member_size);
             var top_height = self.line_bufs[0].get_height(cursor);
@@ -39,18 +39,19 @@
             var bottom_width = self.line_bufs[1].get_width(cursor);
             var width = (function(a, b) { if(a > b) { return a; } else { return b;}; })(top_width, bottom_width);
 
-            cursor.set_x(origin_x + (width - bottom_width) / 2);
-            cursor.set_y(origin_y - harf_height / 2);
-            self.line_bufs[1].render(cursor);
 
             cursor.set_x(origin_x + (width - top_width) / 2);
-            cursor.set_y(origin_y - harf_height - harf_height / 2);
+            cursor.set_y(origin_y - harf_height * 3.0 / 2 - self.vertical_spacing * member_size * 3);
             self.line_bufs[0].render(cursor);
+
+            cursor.set_x(origin_x + (width - bottom_width) / 2);
+            cursor.set_y(origin_y - harf_height / 2 - self.vertical_spacing * member_size);
+            self.line_bufs[1].render(cursor);
             
             cursor.draw_line(origin_x,
-                            origin_y - harf_height + self.vertical_spacing * cursor.get_size(), 
+                            origin_y - harf_height - self.vertical_spacing * member_size, 
                             origin_x + width, 
-                            origin_y - harf_height + self.vertical_spacing * cursor.get_size());
+                            origin_y - harf_height - self.vertical_spacing * member_size);
 
             cursor.set_x(origin_x + width + 2 * self.left_right_spacing * cursor.get_size());
             cursor.set_y(origin_y);
