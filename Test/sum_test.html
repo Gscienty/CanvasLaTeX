@@ -15,6 +15,7 @@
 <script src="../src/blocks/simple.js"></script>
 <script src="../src/blocks/math/sum.js"></script>
 <script src="../src/blocks/math/prod.js"></script>
+<script src="../src/blocks/math/times.js"></script>
 <script src="../src/blocks/math/frac.js"></script>
 <script src="../src/line_buf.js"></script>
 <script src="../src/page.js"></script>
@@ -32,6 +33,6 @@
             });
     doc.append_page().get_cursor().set_size(36);
     
-    doc.append_line((new latex.line_buf()).append('f(x) = \\sum_{i=1}^{N} 2^{x}_{x}*3\\prod_{j=1}^M j'));
+    doc.append_line((new latex.line_buf()).append('f(x) = \\sum_{i=0}^{N}'));
     doc.render(0, 0);
 </script>
