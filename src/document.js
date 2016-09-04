@@ -41,12 +41,7 @@
             var line_count = self.line_bufs.length;
             for(var line_itr = line_number_start; line_itr < line_count; line_itr++){
                 if(current_page.get_cursor().get_y() < self.page_info.bottom){
-                    if(line_itr != 0){
-                        current_page.get_cursor().set_y(current_page.get_cursor().get_y() + self.line_bufs[line_itr - 1].get_height(current_page.get_cursor()) + self.page_info.line_spacing);
-                    }
-                    else{
-                        current_page.get_cursor().set_y(current_page.get_cursor().get_y() + self.line_bufs[line_itr].get_height(current_page.get_cursor()) / 2);
-                    }
+                    current_page.get_cursor().set_y(current_page.get_cursor().get_y() + self.line_bufs[line_itr].get_height(current_page.get_cursor()) + self.page_info.line_spacing);
 
                     current_page.get_cursor().set_x(self.page_info.left);
                     

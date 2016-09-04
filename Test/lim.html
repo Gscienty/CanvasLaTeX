@@ -18,6 +18,8 @@
 <script src="../src/blocks/math/times.js"></script>
 <script src="../src/blocks/math/infty.js"></script>
 <script src="../src/blocks/math/frac.js"></script>
+<script src="../src/blocks/math/lim.js"></script>
+<script src="../src/blocks/math/to.js"></script>
 <script src="../src/line_buf.js"></script>
 <script src="../src/page.js"></script>
 <script src="../src/document.js"></script>
@@ -36,9 +38,6 @@
     
     doc.append_line((new latex.line_buf()).append('Taylor formula :'));
     doc.get_page_by_number(0).get_cursor().set_style('Italic');
-    doc.append_line((new latex.line_buf()).append('f(x) = \\sum_{i=0}^{\\infty}\\frac{f^{(i)}(a)}{i!}(x - a)^i + R_n(x)'));
-    doc.append_line((new latex.line_buf()).append(' '));
-    doc.append_line((new latex.line_buf()).append(' '));
-    doc.append_line((new latex.line_buf()).append('LaTeX code: f(x) = \\\\sum\\_\\{i=0\\}\\^{\\\\infty}\\\\frac\\{f\\^\\{(i)\\}(a)\\}\\{i!\\}(x - a)\\^i + R\\_n(x)'));
+    doc.append_line((new latex.line_buf()).append('e = \\lim_{n\\to\\infty}(1 + \\frac{1}{n})^n'));
     doc.render(0, 0);
 </script>
