@@ -16,6 +16,7 @@
 <script src="../src/blocks/math/sum.js"></script>
 <script src="../src/blocks/math/prod.js"></script>
 <script src="../src/blocks/math/times.js"></script>
+<script src="../src/blocks/math/infty.js"></script>
 <script src="../src/blocks/math/frac.js"></script>
 <script src="../src/line_buf.js"></script>
 <script src="../src/page.js"></script>
@@ -33,6 +34,7 @@
             });
     doc.append_page().get_cursor().set_size(36);
     
-    doc.append_line((new latex.line_buf()).append('f(x) = \\sum_{i=0}^{N}'));
+    doc.append_line((new latex.line_buf()).append('Tayor'));
+    doc.append_line((new latex.line_buf()).append('f(x) = \\sum_{i=0}^{\\infty}\\frac{f^{(i)}(a)}{i!}(x - a) + R_n(x)'));
     doc.render(0, 0);
 </script>
