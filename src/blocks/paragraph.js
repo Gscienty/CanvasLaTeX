@@ -39,4 +39,6 @@
         return [alpha.substring(block_length + param_length + 2), (new root.line_buf()).append(alpha.substr(block_length + 1, param_length))];
     };
 
+    root.blocks.paragraph.test = function(alpha) { return /^\\paragraph/.test(alpha); };
+
 })(this.latex, this.latex.cursor_default_cfg.paragraph_title);
