@@ -25,6 +25,8 @@
         return [alpha.substring(block_length), new root.blocks.cdots()];
     };
 
+    root.blocks.cdots.test = function(alpha) { return /^\\cdots/.test(alpha); };
+
     root.blocks.vdots = function(){
         var self = {};
         self.dots = '·';
