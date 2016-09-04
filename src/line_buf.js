@@ -10,12 +10,11 @@
         this.self = self;
 
         this.get_width = function(cursor) {
-            var width = 0;
-            var len = self.blocks.length;
-            for(var i = 0; i < len; i++){
-                width = width + self.blocks[i].get_width(cursor);
+            var result = 0;
+            for(var i = 0; i < self.blocks.length; i++){
+                result = result + self.blocks[i].get_width(cursor);
             };
-            return width;
+            return result;
         };
 
         this.get_height = function(cursor) {
@@ -81,6 +80,7 @@
             for(var i = 0; i < buf_len; i++){
                 cursor.set_y(origin_y + self.blocks[i].get_height(cursor) / 2);
                 self.blocks[i].render(cursor);
+                cursor.set_y(origin_y);
             };
             return this;
         };

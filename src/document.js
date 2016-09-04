@@ -28,7 +28,6 @@
         };
 
         this.get_page_by_number = function(i){
-            console.log(self.pages.length);
             return self.pages[i];
         };
 

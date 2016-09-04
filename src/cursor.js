@@ -76,6 +76,7 @@
         };
 
         this.get_measure = function(text){
+            assemble_ctx();
             return {
                 width : self.ctx.measureText(text).width,
                 height : this.get_size()
