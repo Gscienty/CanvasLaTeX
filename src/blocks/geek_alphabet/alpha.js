@@ -8,5 +8,4 @@
     root.blocks.A = {};
     root.blocks.A.build = function(alpha){ return root.block_length.simple.build('A' + alpha.substring(2)); };
     root.blocks.A.test = function(alpha) { return /^\\A/.test(alpha); };
-
 })(this.latex);

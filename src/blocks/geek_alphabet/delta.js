@@ -8,5 +8,4 @@
     root.blocks.delta = {};
     root.blocks.delta.build = function(alpha){ return root.blocks.simple('δ' + alpha.substring(6)); };
     root.blocks.delta.test = function(alpha) { return /^\\delta/.test(alpha); };
-
 })(this.latex);
