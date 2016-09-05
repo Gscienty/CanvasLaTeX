@@ -15,6 +15,9 @@
         render : function(cursor) {
             this.block_render(cursor);
             return this;
+        },
+        get_class_name : function() {
+            return this.get_block_name();
         }
     };
 

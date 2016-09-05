@@ -7,6 +7,8 @@
         self.big_ratio = 1.4;
         self.vertical_spacing = 0.1;
 
+        this.get_block_name = function(){ return 'sum'; };
+        
         function get_start_height(cursor){
             var member = cursor.get_size();
             cursor.set_size(member * self.small_ratio);

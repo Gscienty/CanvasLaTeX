@@ -3,6 +3,8 @@
         var self = {};
         self.line_buf = line_buf;
 
+        this.get_block_name = function(){ return 'it'; };
+
         this.get_block_width = function(cursor){
             var member = cursor.get_style();
             cursor.set_style('italic');

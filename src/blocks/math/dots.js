@@ -5,6 +5,9 @@
         var self = {};
         self.dots = '···';
 
+        this.get_block_name = function(){ return 'cdots'; };
+        
+
         this.get_block_width = function(cursor){
             return cursor.get_measure(self.dots).width;
         };
@@ -30,6 +33,9 @@
     root.blocks.vdots = function(){
         var self = {};
         self.dots = '·';
+
+        this.get_block_name = function(){ return 'vdots'; };
+        
 
         this.get_block_width = function(cursor){
             return cursor.get_measure(self.dots).width;

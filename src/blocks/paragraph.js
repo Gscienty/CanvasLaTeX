@@ -6,6 +6,9 @@
         self.line_buf = line_buf;
         self.cfg = cfg;
 
+        
+        this.get_block_name = function(){ return 'paragraph'; };
+
         this.get_block_width = function(cursor) {
             var remember_origin_cfg = cursor.get_cfg();
             cursor.set_cfg(self.cfg);

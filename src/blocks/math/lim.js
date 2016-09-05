@@ -7,6 +7,8 @@
         self.vertical_spacing = 0.01;
         self.line_buf = bottom_line_buf;
 
+        this.get_block_name = function(){ return 'lim'; };
+
         function get_operation_height(cursor){
             var member = cursor.get_size();
             cursor.set_size(member * self.big_ratio);

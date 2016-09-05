@@ -8,6 +8,8 @@
         self.small_ratio = 0.6;
         self.right_spacing = 0.1;
 
+        this.get_block_name = function(){ return 'simple'; };
+
         this.get_block_width = function(cursor){
             var origin_width = cursor.get_measure(self.word).width;
             var member = cursor.get_size();

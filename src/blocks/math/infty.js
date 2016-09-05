@@ -5,6 +5,8 @@
         var self = {};
         self.word = '∞';
 
+        this.get_block_name = function(){ return 'infty'; };
+
         this.get_block_width = function(cursor){
             return cursor.get_measure(self.word).width;
         };

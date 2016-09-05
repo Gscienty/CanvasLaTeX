@@ -5,6 +5,8 @@
         var self = {};
         self.spacing = spacing;
 
+        this.get_block_name = function(){ return 'jump'; };
+
         this.get_block_width = function(cursor){
             return cursor.get_size() * self.spacing;
         };

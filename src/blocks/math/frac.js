@@ -7,6 +7,9 @@
         self.left_right_spacing = 0.1;
         self.vertical_spacing = 0.2;
 
+        this.get_block_name = function(){ return 'frac'; };
+        
+
         this.get_block_width = function(cursor){
             var member_size = cursor.get_size();
             cursor.set_size(self.small_ratio * member_size);

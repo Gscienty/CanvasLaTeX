@@ -33,13 +33,16 @@
 (function(root, cfg){
     'use strict';
 
-    root.blocks.origin_section = function(line_buf, cfg_h, num){
+    root.blocks.origin_section = function(line_buf, cfg_h, num, class_name){
         var self = {};
         self.line_buf = line_buf;
         self.cfg = cfg_h;
+        self.class_name = class_name;
 
         self.line_buf.insert('\\jump{0.2} ', 0);
         self.line_buf.insert(num, 0);
+
+        this.get_block_name = function() { return self.class_name; };
 
         this.get_block_width = function(cursor){
             var remember_origin_cfg = cursor.get_cfg();
@@ -68,7 +71,7 @@
     root.blocks.origin_section.prototype = root.blocks.abstract_block;
 
     root.blocks.section = function(line_buf){
-        return new root.blocks.origin_section(line_buf, cfg.h1, root.blocks.section_cfg.get_new_section_id());
+        return new root.blocks.origin_section(line_buf, cfg.h1, root.blocks.section_cfg.get_new_section_id(), 'section');
     };
 
     root.blocks.section.build = function(alpha){
@@ -80,7 +83,7 @@
     root.blocks.section.test = function(alpha) { return /^\\section/.test(alpha); };
 
     root.blocks.subsection = function(line_buf){
-        return new root.blocks.origin_section(line_buf, cfg.h2, root.blocks.section_cfg.get_new_sub_section_id());
+        return new root.blocks.origin_section(line_buf, cfg.h2, root.blocks.section_cfg.get_new_sub_section_id(), 'subsection');
     };
 
     root.blocks.subsection.build = function(alpha){
@@ -92,7 +95,7 @@
     root.blocks.subsection.test = function(alpha) { return /^\\subsection/.test(alpha); };
 
     root.blocks.subsubsection = function(line_buf){
-        return new root.blocks.origin_section(line_buf, cfg.h3, root.blocks.section_cfg.get_new_sub_sub_section_id());
+        return new root.blocks.origin_section(line_buf, cfg.h3, root.blocks.section_cfg.get_new_sub_sub_section_id(), 'subsubsection');
     };
 
     root.blocks.subsubsection.build = function(alpha){
