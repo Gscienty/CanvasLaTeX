@@ -1,4 +1,5 @@
 (function(root){
+    
     'use strict';
 
     root.blocks.alpha = {};

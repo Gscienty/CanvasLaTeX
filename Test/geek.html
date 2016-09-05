@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<meta charset="utf-8" >
+
+<style media="screen">
+    canvas{
+        border: 1px solid #000;
+    }
+</style>
+
+<div id="article">
+</div>
+
+<script src="../src/global.js"></script>
+<script src="../src/cursor.js"></script>
+<script src="../src/blocks/simple.js"></script>
+<script src="../src/blocks/geek_alphabet/alpha.js"></script>
+<script src="../src/line_buf.js"></script>
+<script src="../src/page.js"></script>
+<script src="../src/document.js"></script>
+
+<script>
+    var doc = new latex.document(document.getElementById('article'), {
+                width : 1024,
+                height : 842,
+                left : 30,
+                right : 565,
+                top : 30,
+                bottom : 812,
+                line_spacing : 5
+            });
+    doc.append_page().get_cursor().set_size(24);
+    
+    doc.append_line((new latex.line_buf()).append('\\alpha_aasdasds'));
+    doc.render(0, 0);
+</script>
