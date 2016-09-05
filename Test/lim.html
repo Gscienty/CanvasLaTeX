@@ -29,15 +29,10 @@
                 width : 1024,
                 height : 842,
                 left : 30,
-                right : 565,
+                right : 982,
                 top : 30,
                 bottom : 812,
-                line_spacing : 5
+                line_spacing : 0
             });
-    doc.append_page().get_cursor().set_size(24);
-    
-    doc.append_line((new latex.line_buf()).append('Taylor formula :'));
-    doc.get_page_by_number(0).get_cursor().set_style('Italic');
-    doc.append_line((new latex.line_buf()).append('e = \\lim_{n\\to\\infty}(1 + \\frac{1}{n})^n'));
-    doc.render(0, 0);
+    doc.document('山东师范大学到北京邮电大学的距离').render();
 </script>

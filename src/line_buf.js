@@ -7,7 +7,14 @@
         self.height = 0;
         self.blocks = [];
 
-        this.self = self;
+
+        this.shift_blocks = function() { return self.blocks.shift(); };
+
+        this.get_blocks_length = function() { return self.blocks.length; };
+
+        this.get_first_block = function() { return self.blocks[0]; };
+
+        this.blocks_append = function(block) { self.blocks.push(block); };
 
         this.get_width = function(cursor) {
             var result = 0;

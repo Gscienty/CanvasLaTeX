@@ -5,7 +5,7 @@
         var self = {};
         self.pages = [];
         self.area = area_dom;
-        self.line_bufs = [];
+        self.text = '';
         if(page_info == undefined){
             page_info = {
                 width : 595,
@@ -14,12 +14,12 @@
                 right : 565,
                 top : 30,
                 bottom : 812,
-                line_spacing : 5
+                line_spacing : 0
             };
         };
         self.page_info = page_info;
 
-        this.append_page = function(){
+        function create_page(){
             var canvas_element = document.createElement('canvas');
             self.area.appendChild(canvas_element);
             var new_page = new root.page(canvas_element, self.page_info.width, self.page_info.height);
@@ -27,28 +27,29 @@
             return new_page;
         };
 
-        this.get_page_by_number = function(i){
-            return self.pages[i];
+        this.document = function(text){
+            self.text = text;
+            return this;
         };
 
-        this.append_line = function(line_buf){
-            self.line_bufs.push(line_buf);
-        };
-
-        this.render = function(page_number, line_number_start){
-            var current_page = this.get_page_by_number(page_number);
-            current_page.get_cursor().set_x(self.page_info.left).set_y(self.page_info.top);
-            var line_count = self.line_bufs.length;
-            for(var line_itr = line_number_start; line_itr < line_count; line_itr++){
-                if(current_page.get_cursor().get_y() < self.page_info.bottom){
-                    current_page.get_cursor().set_y(current_page.get_cursor().get_y() + self.line_bufs[line_itr].get_height(current_page.get_cursor()) + self.page_info.line_spacing);
-
-                    current_page.get_cursor().set_x(self.page_info.left);
-                    
-                    self.line_bufs[line_itr].render(current_page.get_cursor());
-                }
-                else { return line_itr; };
-            };
+        this.render = function(){
+            var text_blocks = (new root.line_buf()).append(self.text);
+            var page = create_page();
+            page.get_cursor().set_x(page_info.left).set_y(page_info.top);
+            var row_width_limit = page_info.right - page_info.left;
+            do {
+                var row_blocks = new root.line_buf();
+                while(text_blocks.get_blocks_length() > 0 && row_blocks.get_width(page.get_cursor()) + text_blocks.get_first_block().get_width(page.get_cursor()) < row_width_limit){
+                    row_blocks.blocks_append(text_blocks.shift_blocks());
+                };
+                if(page.get_cursor().get_y() + row_blocks.get_height(page.get_cursor()) + page_info.line_spacing * page.get_cursor().get_size() > page_info.bottom){
+                    page = create_page();
+                    page.get_cursor().set_x(page_info.left).set_y(page_info.top);
+                };
+                page.get_cursor().set_y(page.get_cursor().get_y() + row_blocks.get_height(page.get_cursor()) + page_info.line_spacing * page.get_cursor().get_size());
+                page.get_cursor().set_x(page_info.left);
+                row_blocks.render(page.get_cursor());
+            }while(text_blocks.get_blocks_length() > 0);
         };
     };
 
