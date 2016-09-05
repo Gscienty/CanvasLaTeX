@@ -6,6 +6,6 @@
     root.blocks.lambda.test = function(alpha) { return /^\\lambda/.test(alpha); };
 
     root.blocks.Lambda = {};
-    root.blocks.Lambda.build = function(alpha){ return root.block_length.simple.build('∧' + alpha.substring(7)); };
+    root.blocks.Lambda.build = function(alpha){ return root.blocks.simple.build('∧' + alpha.substring(7)); };
     root.blocks.Lambda.test = function(alpha) { return /^\\Lambda/.test(alpha); };
 })(this.latex);

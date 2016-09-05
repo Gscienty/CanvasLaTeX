@@ -14,6 +14,28 @@
 <script src="../src/cursor.js"></script>
 <script src="../src/blocks/simple.js"></script>
 <script src="../src/blocks/geek_alphabet/alpha.js"></script>
+<script src="../src/blocks/geek_alphabet/beta.js"></script>
+<script src="../src/blocks/geek_alphabet/chi.js"></script>
+<script src="../src/blocks/geek_alphabet/delta.js"></script>
+<script src="../src/blocks/geek_alphabet/epsilon.js"></script>
+<script src="../src/blocks/geek_alphabet/eta.js"></script>
+<script src="../src/blocks/geek_alphabet/gamma.js"></script>
+<script src="../src/blocks/geek_alphabet/iota.js"></script>
+<script src="../src/blocks/geek_alphabet/kappa.js"></script>
+<script src="../src/blocks/geek_alphabet/lambda.js"></script>
+<script src="../src/blocks/geek_alphabet/mu.js"></script>
+<script src="../src/blocks/geek_alphabet/nu.js"></script>
+<script src="../src/blocks/geek_alphabet/omega.js"></script>
+<script src="../src/blocks/geek_alphabet/phi.js"></script>
+<script src="../src/blocks/geek_alphabet/pi.js"></script>
+<script src="../src/blocks/geek_alphabet/psi.js"></script>
+<script src="../src/blocks/geek_alphabet/rho.js"></script>
+<script src="../src/blocks/geek_alphabet/sigma.js"></script>
+<script src="../src/blocks/geek_alphabet/tau.js"></script>
+<script src="../src/blocks/geek_alphabet/theta.js"></script>
+<script src="../src/blocks/geek_alphabet/upsilon.js"></script>
+<script src="../src/blocks/geek_alphabet/xi.js"></script>
+<script src="../src/blocks/geek_alphabet/zeta.js"></script>
 <script src="../src/line_buf.js"></script>
 <script src="../src/page.js"></script>
 <script src="../src/document.js"></script>
@@ -30,6 +52,7 @@
             });
     doc.append_page().get_cursor().set_size(24);
     
-    doc.append_line((new latex.line_buf()).append('\\alpha_aasdasds'));
+    doc.append_line((new latex.line_buf()).append('\\alpha \\A \\beta \\B \\chi \\Chi \\delta \\Delta \\epsilon \\Epsilon \\eta \\Eta \\gamma \\Gamma \\iota \\Iota \\kappa \\Kappa \\lambda \\Lambda \\mu \\Mu \\nu \\Nu \\omega \\Omega \\phi \\Phi \\pi \\Pi \\psi \\Psi \\rho \\Rho \\sigma \\Sigma \\tau \\Tau \\theta \\Theta'));
+    doc.append_line((new latex.line_buf()).append('\\upsilon \\Upsilon \\xi \\Xi \\zeta \\Zeta'));
     doc.render(0, 0);
 </script>
