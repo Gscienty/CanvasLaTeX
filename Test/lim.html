@@ -20,6 +20,8 @@
 <script src="../src/blocks/math/frac.js"></script>
 <script src="../src/blocks/math/lim.js"></script>
 <script src="../src/blocks/math/to.js"></script>
+<script src="../src/blocks/font_style/bf.js"></script>
+<script src="../src/blocks/font_style/center.js"></script>
 <script src="../src/line_buf.js"></script>
 <script src="../src/page.js"></script>
 <script src="../src/document.js"></script>
@@ -32,7 +34,7 @@
                 right : 982,
                 top : 30,
                 bottom : 812,
-                line_spacing : 0
+                line_spacing : 0.5
             });
-    doc.document('山东师范大学到北京邮电大学的距离');
+    doc.document('{\\center{\\bf自然对数的底数}}{\\centerGscienty}{\\center\\lim_{n \\to \\infty}(1 + \\frac{1}{n})^n = e}');
 </script>

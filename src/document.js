@@ -41,14 +41,22 @@
             do {
                 var row_blocks = new root.line_buf();
                 while(text_blocks.get_blocks_length() > 0 && row_blocks.get_width(page.get_cursor()) + text_blocks.get_first_block().get_width(page.get_cursor()) < row_width_limit){
-                    row_blocks.blocks_append(text_blocks.shift_blocks());
+                    var block = text_blocks.shift_blocks();
+                    row_blocks.blocks_append(block);
+                    if((function(a){ return a === 'center' || a.indexOf('section') != -1;  })(block.get_class_name())) { break; };
                 };
                 if(page.get_cursor().get_y() + row_blocks.get_height(page.get_cursor()) + page_info.line_spacing * page.get_cursor().get_size() > page_info.bottom){
                     page = create_page();
                     page.get_cursor().set_x(page_info.left).set_y(page_info.top);
                 };
                 page.get_cursor().set_y(page.get_cursor().get_y() + row_blocks.get_height(page.get_cursor()) + page_info.line_spacing * page.get_cursor().get_size());
-                page.get_cursor().set_x(page_info.left);
+
+                if(row_blocks.get_first_block().get_class_name() === 'center'){
+                    page.get_cursor().set_x(page_info.left + (row_width_limit - row_blocks.get_width(page.get_cursor()) ) / 2);
+                }
+                else{
+                    page.get_cursor().set_x(page_info.left);
+                }
                 row_blocks.render(page.get_cursor());
             }while(text_blocks.get_blocks_length() > 0);
         };
