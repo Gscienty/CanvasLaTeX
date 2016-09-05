@@ -29,6 +29,7 @@
 
         this.document = function(text){
             self.text = text;
+            this.render();
             return this;
         };
 
