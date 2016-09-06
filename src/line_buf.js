@@ -39,7 +39,7 @@
         function word_transfer_block(alpha){
 
             for(var block in root.blocks){
-                if(root.blocks[block].test){
+                if(root.blocks[block].test && block != 'simple'){
                     if(root.blocks[block].test(alpha)){
                         return root.blocks[block].build(alpha);
                     };

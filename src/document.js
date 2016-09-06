@@ -43,7 +43,7 @@
                 while(text_blocks.get_blocks_length() > 0 && row_blocks.get_width(page.get_cursor()) + text_blocks.get_first_block().get_width(page.get_cursor()) < row_width_limit){
                     var block = text_blocks.shift_blocks();
                     row_blocks.blocks_append(block);
-                    if((function(a){ return a === 'center' || a.indexOf('section') != -1;  })(block.get_class_name())) { break; };
+                    if((function(a){ return a === 'center' || a.indexOf('section') != -1 || a === 'crlf'  })(block.get_class_name())) { break; };
                 };
                 if(page.get_cursor().get_y() + row_blocks.get_height(page.get_cursor()) + page_info.line_spacing * page.get_cursor().get_size() > page_info.bottom){
                     page = create_page();
