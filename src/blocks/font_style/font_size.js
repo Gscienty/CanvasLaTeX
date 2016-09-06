@@ -9,11 +9,11 @@
     };
     root.blocks.origin_font_size.prototype = root.blocks.abstract_block;
     root.blocks.tiny = {};
-    root.blocks.tiny.build = function(alpha) { return [alpha.substring(5), new root.blocks.origin_font_size(12)]; }
+    root.blocks.tiny.build = function(alpha) { return [alpha.substring(5), new root.blocks.origin_font_size(8)]; }
     root.blocks.tiny.test = function(alpha) { return /^\\tiny/.test(alpha); }
     
     root.blocks.scriptsize = {};
-    root.blocks.scriptsize.build = function(alpha) { return [alpha.substring(11), new root.blocks.origin_font_size(14)]; }
+    root.blocks.scriptsize.build = function(alpha) { return [alpha.substring(11), new root.blocks.origin_font_size(12)]; }
     root.blocks.scriptsize.test = function(alpha) { return /^\\scriptsize/.test(alpha); }
     
     root.blocks.footnotesize = {};
