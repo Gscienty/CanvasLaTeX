@@ -50,9 +50,5 @@
                 bottom : 812,
                 line_spacing : 5
             });
-    doc.append_page().get_cursor().set_size(24);
-    
-    doc.append_line((new latex.line_buf()).append('\\alpha \\A \\beta \\B \\chi \\Chi \\delta \\Delta \\epsilon \\Epsilon \\eta \\Eta \\gamma \\Gamma \\iota \\Iota \\kappa \\Kappa \\lambda \\Lambda \\mu \\Mu \\nu \\Nu \\omega \\Omega \\phi \\Phi \\pi \\Pi \\psi \\Psi \\rho \\Rho \\sigma \\Sigma \\tau \\Tau \\theta \\Theta'));
-    doc.append_line((new latex.line_buf()).append('\\upsilon \\Upsilon \\xi \\Xi \\zeta \\Zeta'));
-    doc.render(0, 0);
+    doc.document('\\alpha \\A \\beta \\B \\chi \\Chi \\delta \\Delta \\epsilon \\Epsilon \\eta \\Eta \\gamma \\Gamma \\iota \\Iota \\kappa \\Kappa \\lambda \\Lambda \\mu \\Mu \\nu \\Nu \\omega \\Omega \\phi \\Phi \\pi \\Pi \\psi \\Psi \\rho \\Rho \\sigma \\Sigma \\tau \\Tau \\theta \\Theta');
 </script>
