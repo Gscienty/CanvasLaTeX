@@ -12,14 +12,6 @@
 
 <script src="../CanvasLatex.1.0.min.js"></script>
 <script>
-    var doc = new latex.document(document.getElementById('article'), {
-                width : 1024,
-                height : 842,
-                left : 30,
-                right : 982,
-                top : 30,
-                bottom : 812,
-                line_spacing : 0.5
-            });
+    var doc = new latex.document(document.getElementById('article'));
     doc.document('\\Huge{\\center{\\bf自然对数的底数}}\\normalsize{\\centerGscienty}{\\center\\lim_{n \\to \\infty}(1 + \\frac{1}{n})^n = e_{\\tiny极限}}');
 </script>

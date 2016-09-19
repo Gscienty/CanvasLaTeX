@@ -61,4 +61,4 @@ for file_name in file_list:
                 is_spacing = False
             result = result + chr
             
-    print result
+print result

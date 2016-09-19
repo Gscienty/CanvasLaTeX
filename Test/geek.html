@@ -10,47 +10,9 @@
 <div id="article">
 </div>
 
-<script src="../src/global.js"></script>
-<script src="../src/cursor.js"></script>
-<script src="../src/blocks/simple.js"></script>
-<script src="../src/blocks/font_style/font_size.js"></script>
-<script src="../src/blocks/font_style/crlf.js"></script>
-<script src="../src/blocks/geek_alphabet/alpha.js"></script>
-<script src="../src/blocks/geek_alphabet/beta.js"></script>
-<script src="../src/blocks/geek_alphabet/chi.js"></script>
-<script src="../src/blocks/geek_alphabet/delta.js"></script>
-<script src="../src/blocks/geek_alphabet/epsilon.js"></script>
-<script src="../src/blocks/geek_alphabet/eta.js"></script>
-<script src="../src/blocks/geek_alphabet/gamma.js"></script>
-<script src="../src/blocks/geek_alphabet/iota.js"></script>
-<script src="../src/blocks/geek_alphabet/kappa.js"></script>
-<script src="../src/blocks/geek_alphabet/lambda.js"></script>
-<script src="../src/blocks/geek_alphabet/mu.js"></script>
-<script src="../src/blocks/geek_alphabet/nu.js"></script>
-<script src="../src/blocks/geek_alphabet/omega.js"></script>
-<script src="../src/blocks/geek_alphabet/phi.js"></script>
-<script src="../src/blocks/geek_alphabet/pi.js"></script>
-<script src="../src/blocks/geek_alphabet/psi.js"></script>
-<script src="../src/blocks/geek_alphabet/rho.js"></script>
-<script src="../src/blocks/geek_alphabet/sigma.js"></script>
-<script src="../src/blocks/geek_alphabet/tau.js"></script>
-<script src="../src/blocks/geek_alphabet/theta.js"></script>
-<script src="../src/blocks/geek_alphabet/upsilon.js"></script>
-<script src="../src/blocks/geek_alphabet/xi.js"></script>
-<script src="../src/blocks/geek_alphabet/zeta.js"></script>
-<script src="../src/line_buf.js"></script>
-<script src="../src/page.js"></script>
-<script src="../src/document.js"></script>
+<script src="../CanvasLaTex.1.0.min.js"></script>
 
 <script>
-    var doc = new latex.document(document.getElementById('article'), {
-                width : 1024,
-                height : 842,
-                left : 30,
-                right : 565,
-                top : 30,
-                bottom : 812,
-                line_spacing : 1
-            });
-    doc.document('\\tiny\\alpha \\A \\beta \\B \\chi \\Chi \\delta \\\\\\scriptsize\\Delta \\epsilon \\Epsilon \\eta \\\\\\footnotesize\\Eta \\gamma \\Gamma \\iota \\\\\\small\\Iota \\kappa \\Kappa \\lambda \\Lambda \\\\\\normalsize\\mu \\Mu \\nu \\Nu \\omega \\\\\\large\\Omega \\phi \\Phi \\pi \\Pi \\\\\\Large\\psi \\Psi \\rho \\Rho \\\\\\LARGE\\sigma \\Sigma \\\\\\huge\\tau \\Tau \\\\\\Huge\\theta \\Theta');
+    var doc = new latex.document(document.getElementById('article'));
+    doc.document('{\\center as}\\tiny\\alpha \\A \\beta \\B \\chi \\Chi \\delta \\\\\\scriptsize\\Delta \\epsilon \\Epsilon \\eta \\\\\\footnotesize\\Eta \\gamma \\Gamma \\iota  \\lim_{hsh} \\\\\\small\\Iota \\kappa \\Kappa \\lambda \\Lambda \\\\\\normalsize\\mu \\Mu \\nu \\Nu \\omega \\\\\\large\\Omega \\phi \\Phi \\pi \\Pi \\\\\\Large\\psi \\Psi \\rho \\Rho \\\\\\LARGE\\sigma \\Sigma \\\\\\huge\\tau \\Tau \\\\\\Huge\\theta \\Theta\\\\');
 </script>

@@ -114,6 +114,14 @@
                 style : this.get_style()
             };
         };
+
+        this.get_rendered = function(startx, starty, endx, endy){
+            return self.ctx.getImageData(startx, starty, endx, endy);
+        };
+
+        this.put_image = function(startx, starty, img){
+            self.ctx.putImageData(img, startx, starty);
+        };
     };
 
     root.cursor = latex_cursor;

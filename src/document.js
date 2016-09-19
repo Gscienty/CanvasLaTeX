@@ -9,12 +9,8 @@
         if(page_info == undefined){
             page_info = {
                 width : 595,
-                height : 842,
-                left : 30,
-                right : 565,
-                top : 30,
-                bottom : 812,
-                line_spacing : 0
+                height : 1,
+                line_spacing : 1
             };
         };
         self.page_info = page_info;
@@ -36,8 +32,8 @@
         this.render = function(){
             var text_blocks = (new root.line_buf()).append(self.text);
             var page = create_page();
-            page.get_cursor().set_x(page_info.left).set_y(page_info.top);
-            var row_width_limit = page_info.right - page_info.left;
+            page.get_cursor().set_x(0).set_y(0);
+            var row_width_limit = self.page_info.width;
             do {
                 var row_blocks = new root.line_buf();
                 var break_flag = false;
@@ -52,17 +48,16 @@
                     var block = text_blocks.shift_blocks();
                     row_blocks.blocks_append(block);
                 };
-                if(page.get_cursor().get_y() + row_blocks.get_height(page.get_cursor()) + page_info.line_spacing * page.get_cursor().get_size() > page_info.bottom){
-                    page = create_page();
-                    page.get_cursor().set_x(page_info.left).set_y(page_info.top);
+                if(page.get_cursor().get_y() + row_blocks.get_height(page.get_cursor()) + self.page_info.line_spacing * page.get_cursor().get_size() > page.get_height()){
+                    page.set_height(page.get_height() + 2 * row_blocks.get_height(page.get_cursor()) + self.page_info.line_spacing * page.get_cursor().get_size());
                 };
-                page.get_cursor().set_y(page.get_cursor().get_y() + row_blocks.get_height(page.get_cursor()) + page_info.line_spacing * page.get_cursor().get_size());
+                page.get_cursor().set_y(page.get_cursor().get_y() + row_blocks.get_height(page.get_cursor()) + self.page_info.line_spacing * page.get_cursor().get_size());
 
                 if(row_blocks.get_first_block().get_class_name() === 'center'){
-                    page.get_cursor().set_x(page_info.left + (row_width_limit - row_blocks.get_width(page.get_cursor()) ) / 2);
+                    page.get_cursor().set_x((row_width_limit - row_blocks.get_width(page.get_cursor()) ) / 2);
                 }
                 else{
-                    page.get_cursor().set_x(page_info.left);
+                    page.get_cursor().set_x(0);
                 }
                 row_blocks.render(page.get_cursor());
             }while(text_blocks.get_blocks_length() > 0);
