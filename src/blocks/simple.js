@@ -64,6 +64,10 @@
         if(/^\\./.test(alpha)) alpha = alpha.substring(1);
         
         var word = alpha[0];
+        for(var i = 1; i < alpha.length; i++){
+            if(/[0-9A-Za-z]/.test(alpha[i])) { word = word + alpha[i]; }
+            else { break; };
+        }
         var top_length = 0;
         var bottom_length = 0;
         var is_top = 0;
@@ -71,7 +75,7 @@
         var top_param = '';
         var bottom_param = '';
         var px = 0;
-        for(var i = 1; i < alpha.length; i++){
+        for(var i = word.length; i < alpha.length; i++){
             if (alpha[i] === '_' && is_bottom === 0) { is_bottom = 1; px = px + 1; }
             else if (alpha[i] === '^' && is_top === 0) { is_top = 1; px = px + 1;}
             else if (alpha[i] === '{' && is_bottom === 1) {
@@ -100,7 +104,7 @@
             }
             else { break; };
         };
-        return [alpha.substring(1 + bottom_length + top_length + px), new root.blocks.simple(alpha[0], (new root.line_buf()).append(top_param), (new root.line_buf()).append(bottom_param))];
+        return [alpha.substring(word.length + bottom_length + top_length + px), new root.blocks.simple(word, (new root.line_buf()).append(top_param), (new root.line_buf()).append(bottom_param))];
     };
 
 })(this.latex);
