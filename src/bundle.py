@@ -41,8 +41,7 @@ file_list = ['global.js',
              'blocks/math/frac.js',
              'blocks/math/infty.js',
              'blocks/math/lim.js',
-             'blocks/math/prod.js',
-             'blocks/math/sum.js',
+             'blocks/math/operators/bigoperator.js',
              'blocks/math/times.js',
              'blocks/math/to.js']
 
