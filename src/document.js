@@ -10,7 +10,7 @@
             page_info = {
                 width : 595,
                 height : 1,
-                line_spacing : 1
+                line_spacing : 0.2
             };
         };
         self.page_info = page_info;
@@ -48,8 +48,8 @@
                     var block = text_blocks.shift_blocks();
                     row_blocks.blocks_append(block);
                 };
-                if(page.get_cursor().get_y() + row_blocks.get_height(page.get_cursor()) + self.page_info.line_spacing * page.get_cursor().get_size() > page.get_height()){
-                    page.set_height(page.get_height() + 2 * row_blocks.get_height(page.get_cursor()) + self.page_info.line_spacing * page.get_cursor().get_size());
+                if(page.get_cursor().get_y() + row_blocks.get_height(page.get_cursor()) * 2 + self.page_info.line_spacing * page.get_cursor().get_size() > page.get_height()){
+                    page.set_height(page.get_height() + 2 * row_blocks.get_height(page.get_cursor()) * 2 + self.page_info.line_spacing * page.get_cursor().get_size());
                 };
                 page.get_cursor().set_y(page.get_cursor().get_y() + row_blocks.get_height(page.get_cursor()) + self.page_info.line_spacing * page.get_cursor().get_size());
 

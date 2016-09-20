@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<meta charset="utf-8" >
+
+<style media="screen">
+    canvas{
+        border: 1px solid #000;
+    }
+</style>
+
+<div id="article">
+</div>
+
+<script src="../CanvasLaTex.min.js"></script>
+
+<script>
+    var doc = new latex.document(document.getElementById('article'));
+    doc.document('{\\center 乘法表}1\\times1=1\\\\1\\times2=2   2\\times2=4\\\\1\\times3=3   2\\times3=6   3\\times3=9\\\\1\\times4=4   2\\times4=8   3\\times4=12  4\\times4=16\\\\1\\times5=5   2\\times5=10  3\\times5=15  4\\times5=20  5\\times5=25\\\\1\\times6=6   2\\times6=12  3\\times6=18  4\\times6=24  5\\times6=30  6\\times6=36\\\\1\\times7=7   2\\times7=14  3\\times7=21  4\\times7=28  5\\times7=35  6\\times7=42  7\\times7=49\\\\1\\times8=8   2\\times8=16  3\\times8=24  4\\times8=32  5\\times8=40  6\\times8=48  7\\times8=56  8\\times8=64\\\\1\\times9=9   2\\times9=18  3\\times9=27  4\\times9=36  5\\times9=45  6\\times9=54  7\\times9=63  8\\times9=72  9\\times9=81');
+</script>
