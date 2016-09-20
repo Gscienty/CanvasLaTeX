@@ -4,6 +4,8 @@
     root.blocks.simple = function simple(word, top_line_buf, bottom_line_buf){
         var self = {};
         self.word = word;
+        if(top_line_buf === undefined) { top_line_buf = new root.line_buf(); };
+        if(bottom_line_buf === undefined) { bottom_line_buf = new root.line_buf(); };
         self.line_bufs = [top_line_buf, bottom_line_buf];
         self.small_ratio = 0.6;
         self.right_spacing = 0.1;
