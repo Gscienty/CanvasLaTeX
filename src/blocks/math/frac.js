@@ -5,60 +5,56 @@
         self.line_bufs = [line_buf_t, line_buf_b];
         self.small_ratio = 0.9;
         self.left_right_spacing = 0.1;
-        self.vertical_spacing = 0.2;
+        self.vertical_spacing = 0.1;
 
         this.get_block_name = function(){ return 'frac'; };
         
+        function t_and_p_width(cursor){
+            var member = cursor.get_size();
+            cursor.set_size(member * self.small_ratio);
+            var result = (function(a, b){if(a > b){ return a;} else { return b; }; })(self.line_bufs[0].get_width(cursor), self.line_bufs[1].get_width(cursor));
+            cursor.set_size(member);
+
+            return result + cursor.get_size() * self.left_right_spacing * 2;
+        }
 
         this.get_block_width = function(cursor){
-            var member_size = cursor.get_size();
-            cursor.set_size(self.small_ratio * member_size);
-            var width = (function(a,b) { if(a > b) { return a; } else { return b; };})(self.line_bufs[0].get_width(cursor), self.line_bufs[1].get_width(cursor));
-            cursor.set_size(member_size);
-            return width +  2 * self.left_right_spacing * cursor.get_size();
+            return t_and_p_width(cursor) + cursor.get_size() * self.left_right_spacing * 2;
         };
 
+        function t_and_p_height(cursor){
+            var member = cursor.get_size();
+            cursor.set_size(member * self.small_ratio);
+            var heights = [self.line_bufs[0].get_height(cursor), self.line_bufs[1].get_height(cursor)];
+            cursor.set_size(member);
+            return (function(a, b) { if(a > b) { return a; } else { return b; };})(heights[0], heights[1]) + member * self.vertical_spacing * 2;
+        }
+
         this.get_block_height = function(cursor){
-            var member_size = cursor.get_size();
-            cursor.set_size(member_size * self.small_ratio);
-          
-            var top_height = self.line_bufs[0].get_height(cursor);
-            var bottom_height = self.line_bufs[1].get_height(cursor);
-            var harf_height = (function(a, b){if(a > b) { return a; } else { return b;}; })(top_height, bottom_height);
-            cursor.set_size(member_size);
-            return harf_height * 2.1 + self.vertical_spacing * cursor.get_size();
+            return t_and_p_height(cursor) + cursor.get_size() * self.vertical_spacing * 4;
         };
 
         this.block_render = function(cursor){
-            var member_size = cursor.get_size();
-            var origin_x = cursor.get_x() + self.left_right_spacing * member_size;
-            var origin_y = cursor.get_y() - self.vertical_spacing * member_size;
+            const member = cursor.get_size();
+            const ox = cursor.get_x() + member * self.left_right_spacing;
+            const oy = cursor.get_y() - member * self.vertical_spacing * 2; 
+            const block_width = t_and_p_width(cursor);
 
-            cursor.set_size(self.small_ratio * member_size);
-            var top_height = self.line_bufs[0].get_height(cursor);
-            var bottom_height = self.line_bufs[1].get_height(cursor);
-            var harf_height = (function(a, b){if(a > b) { return a; } else { return b;}; })(top_height, bottom_height);
-            var top_width = self.line_bufs[0].get_width(cursor);
-            var bottom_width = self.line_bufs[1].get_width(cursor);
-            var width = (function(a, b) { if(a > b) { return a; } else { return b;}; })(top_width, bottom_width);
+            cursor.set_size(member * self.small_ratio);
+            const bottom_height = self.line_bufs[1].get_height(cursor);
 
+            cursor.draw_line(ox, oy - bottom_height / 0.75, ox + block_width, oy - bottom_height / 0.75);
 
-            cursor.set_x(origin_x + (width - top_width) / 2);
-            cursor.set_y(origin_y - harf_height * 1.5 - self.vertical_spacing * member_size * 3);
+            cursor.set_x(ox + (block_width - self.line_bufs[0].get_width(cursor)) * 0.5);
+            cursor.set_y(oy - bottom_height / 0.7 - member * self.vertical_spacing - self.line_bufs[0].get_height(cursor) * 0.4);
             self.line_bufs[0].render(cursor);
 
-            cursor.set_x(origin_x + (width - bottom_width) / 2);
-            cursor.set_y(origin_y - harf_height - self.vertical_spacing * member_size);
+            cursor.set_x(ox + (block_width - self.line_bufs[1].get_width(cursor)) * 0.5);
+            cursor.set_y(oy - bottom_height / 0.7 + member * self.vertical_spacing + self.line_bufs[1].get_height(cursor) * 0.95);
             self.line_bufs[1].render(cursor);
-            
-            cursor.draw_line(origin_x,
-                            origin_y - harf_height * 1.35 - self.vertical_spacing * member_size, 
-                            origin_x + width, 
-                            origin_y - harf_height * 1.35 - self.vertical_spacing * member_size);
 
-            cursor.set_x(origin_x + width + 2 * self.left_right_spacing * cursor.get_size());
-            cursor.set_y(origin_y);
-            cursor.set_size(member_size);
+            cursor.set_size(member);
+            cursor.set_x(ox + this.get_block_width(cursor) - member * self.left_right_spacing);
         };
     };
 

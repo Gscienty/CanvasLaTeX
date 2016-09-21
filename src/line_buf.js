@@ -76,7 +76,7 @@
             var buf_len = self.blocks.length;
             var origin_y = cursor.get_y();
             for(var i = 0; i < buf_len; i++){
-                cursor.set_y(origin_y + self.blocks[i].get_height(cursor) / 2);
+                cursor.set_y(origin_y + self.blocks[i].get_height(cursor) * 0.5);
                 self.blocks[i].render(cursor);
                 cursor.set_y(origin_y);
             };

@@ -10,7 +10,7 @@
             page_info = {
                 width : 595,
                 height : 1,
-                line_spacing : 0.2
+                line_spacing : 0.5
             };
         };
         self.page_info = page_info;
@@ -51,7 +51,7 @@
                 if(page.get_cursor().get_y() + row_blocks.get_height(page.get_cursor()) * 2 + self.page_info.line_spacing * page.get_cursor().get_size() > page.get_height()){
                     page.set_height(page.get_height() + 2 * row_blocks.get_height(page.get_cursor()) * 2 + self.page_info.line_spacing * page.get_cursor().get_size());
                 };
-                page.get_cursor().set_y(page.get_cursor().get_y() + row_blocks.get_height(page.get_cursor()) + self.page_info.line_spacing * page.get_cursor().get_size());
+                page.get_cursor().set_y(page.get_cursor().get_y() +  self.page_info.line_spacing * page.get_cursor().get_size() + row_blocks.get_height(page.get_cursor()));
 
                 if(row_blocks.get_first_block().get_class_name() === 'center'){
                     page.get_cursor().set_x((row_width_limit - row_blocks.get_width(page.get_cursor()) ) / 2);
