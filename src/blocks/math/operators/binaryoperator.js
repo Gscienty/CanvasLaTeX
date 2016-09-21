@@ -1,4 +1,6 @@
 (function(root){
+    'use strict';
+
     root.blocks.triangleleft = {};
     root.blocks.triangleleft.test = function(alpha) { return /^\\triangleleft/.test(alpha); };
     root.blocks.triangleleft.build = function(alpha) {

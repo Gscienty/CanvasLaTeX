@@ -65,6 +65,7 @@
             var origin_y = cursor.get_y();
 
             cursor.set_x(origin_x + (width - bottom.width) / 2);
+            cursor.set_y(origin_y - bottom.height * 0.5);
             cursor.set_size(member * self.small_ratio);
             self.line_buf.render(cursor);
 

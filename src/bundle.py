@@ -43,6 +43,7 @@ file_list = ['global.js',
              'blocks/math/lim.js',
              'blocks/math/operators/bigoperator.js',
              'blocks/math/operators/binaryoperator.js',
+             'blocks/math/sqrt.js',
              'blocks/math/to.js']
 
 result = ''
