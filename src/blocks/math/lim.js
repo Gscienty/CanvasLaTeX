@@ -4,7 +4,7 @@
         self.operation = 'lim';
         self.small_ratio = 0.7;
         self.big_ratio = 1.4;
-        self.vertical_spacing = 0.01;
+        self.vertical_spacing = 0.2;
         self.line_buf = bottom_line_buf;
 
         this.get_block_name = function(){ return 'lim'; };
