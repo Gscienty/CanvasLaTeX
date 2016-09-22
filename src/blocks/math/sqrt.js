@@ -24,8 +24,14 @@
             var one_word_size = cursor.get_size(cursor) * 0.5;
             cursor.set_y(cursor.get_y() - block_height / 2);
 
-            cursor.draw_line(origin_x, origin_y, origin_x, origin_y + 10);
+            cursor.draw_line(origin_x, origin_y - block_height * 0.15, origin_x + one_word_size * 0.5, origin_y - block_height * 0.5);
+            cursor.draw_line(origin_x + one_word_size * 0.5, origin_y - block_height * 0.5, origin_x + one_word_size * 0.75, origin_y);
+            cursor.draw_line(origin_x + one_word_size * 0.75, origin_y, origin_x + one_word_size, origin_y - block_height * 2);
+            cursor.draw_line(origin_x + one_word_size, origin_y - block_height * 2, origin_x + one_word_size + inner_length, origin_y - block_height * 2);
 
+
+            cursor.set_y(cursor.get_y() - block_height * 0.25);
+            cursor.set_x(cursor.get_x() + one_word_size);
             self.line_buf.render(cursor);
         };
     };
