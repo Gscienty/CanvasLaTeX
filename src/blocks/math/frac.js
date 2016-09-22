@@ -43,7 +43,7 @@
             cursor.set_size(member * self.small_ratio);
             const bottom_height = self.line_bufs[1].get_height(cursor);
 
-            cursor.draw_line(ox, oy - bottom_height / 0.75, ox + block_width, oy - bottom_height / 0.75);
+            cursor.draw_line(ox, oy - bottom_height / 0.85, ox + block_width, oy - bottom_height / 0.85);
 
             cursor.set_x(ox + (block_width - self.line_bufs[0].get_width(cursor)) * 0.5);
             cursor.set_y(oy - bottom_height / 0.7 - member * self.vertical_spacing - self.line_bufs[0].get_height(cursor) * 0.4);
