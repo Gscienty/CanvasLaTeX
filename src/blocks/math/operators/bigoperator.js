@@ -7,7 +7,7 @@
         self.operation = flag;
         self.small_ratio = 0.8;
         self.big_ratio = 2;
-        self.vertical_spacing = 0;
+        self.vertical_spacing = 0.2;
         self.left_spacing = 0.1;
 
         this.get_block_name = function(){ return 'sum'; };
@@ -66,7 +66,7 @@
         };
 
         this.get_block_height = function(cursor){
-            return get_start_height(cursor) + get_limit_height(cursor) + get_operation_height(cursor) * (1 + 2 * self.vertical_spacing);
+            return get_start_height(cursor) + get_limit_height(cursor) + get_operation_height(cursor) * (1 + 4 * self.vertical_spacing);
         };
 
         this.block_render = function(cursor){
@@ -88,7 +88,7 @@
             cursor.write_word(self.operation);
 
             cursor.set_x(origin_x + (width - start_width) / 2);
-            cursor.set_y(origin_y - operation_height * self.vertical_spacing);
+            cursor.set_y(origin_y - start_height * 0.5);
             cursor.set_size(member * self.small_ratio);
             self.line_bufs[0].render(cursor);
 

@@ -79,7 +79,7 @@
             assemble_ctx();
             return {
                 width : self.ctx.measureText(text).width,
-                height : this.get_size() * 0.5
+                height : this.get_size() * 0.918
             };
         };
 
