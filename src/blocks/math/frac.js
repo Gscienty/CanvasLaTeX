@@ -3,7 +3,7 @@
     root.blocks.frac = function(line_buf_t, line_buf_b){
         var self = {};
         self.line_bufs = [line_buf_t, line_buf_b];
-        self.small_ratio = 0.9;
+        self.small_ratio = 0.8;
         self.left_right_spacing = 0.1;
         self.vertical_spacing = 0.1;
 
@@ -47,7 +47,7 @@
             self.line_bufs[0].render(cursor);
 
             cursor.set_x(x + (width - self.line_bufs[1].get_width(cursor)) * 0.5);
-            cursor.set_y(y + self.line_bufs[1].get_height(cursor) * 0.5 + member * self.vertical_spacing);
+            cursor.set_y(y + self.line_bufs[1].get_height(cursor) * 0.35 + member * self.vertical_spacing);
             self.line_bufs[1].render(cursor);
             cursor.set_size(member);
 

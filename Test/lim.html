@@ -1,17 +1,10 @@
 <!DOCTYPE html>
 <meta charset="utf-8" >
-
-<style media="screen">
-    canvas{
-        border: 1px solid #000;
-    }
-</style>
-
 <div id="article">
 </div>
 
 <script src="../CanvasLatex.min.js"></script>
 <script>
     var doc = new latex.document(document.getElementById('article'));
-    doc.document('\\Huge\\sum_{i = 1}^2\\frac{1}{2 + \\frac{3}{4}} - 5 \\times 6 \\div 7');
+    doc.document('\\Huge\\sum_{i = 1}^{\\prod_{j = 2}^3 x_j \\times 4}\\frac{5}{6 + \\frac{7}{8}} - 9 \\times x_i \\div x_j');
 </script>
