@@ -8,9 +8,9 @@
         self.text = '';
         if(page_info == undefined){
             page_info = {
-                width : 595,
+                width : 800,
                 height : 1,
-                line_spacing : 0.5
+                line_spacing : 1
             };
         };
         self.page_info = page_info;

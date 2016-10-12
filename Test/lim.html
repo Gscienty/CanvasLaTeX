@@ -6,5 +6,6 @@
 <script src="../CanvasLatex.min.js"></script>
 <script>
     var doc = new latex.document(document.getElementById('article'));
-    doc.document('\\Huge\\sum_{i = 1}^{\\prod_{j = 2}^3 x_j \\times 4}\\frac{5}{6 + \\frac{7}{8}} - 9 \\times x_i \\div x_j');
+    doc.document('\\Huge ∫\\frac{x}{(1 - x)^3}dx = ∫\\frac{x}{2}d(1-x)^{-2} = \\frac{x}{2(1 - x)^2} - \\frac{1}{2}∫(1-x)^{-2}dx');
+    //doc.document('\\Huge {\\center -10 \\times y_{xx} + [(y_{xx} + 52.8) \\times 5 - 3.9343] \\div 0.5 ≡ 520.1314}');
 </script>

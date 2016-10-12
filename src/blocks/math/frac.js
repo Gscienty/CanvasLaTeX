@@ -5,7 +5,7 @@
         self.line_bufs = [line_buf_t, line_buf_b];
         self.small_ratio = 0.8;
         self.left_right_spacing = 0.1;
-        self.vertical_spacing = 0.1;
+        self.vertical_spacing = 0.3;
 
         this.get_block_name = function(){ return 'frac'; };
         

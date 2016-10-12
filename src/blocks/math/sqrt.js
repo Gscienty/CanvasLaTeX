@@ -5,7 +5,7 @@
         self.n = n;
         self.line_buf = inner_line_buf;
         self.inner_vertical_spacing = 0.1;
-        self.small_ratio = 0.5;
+        self.small_ratio = 0.7;
 
         this.get_block_name = function(){ return 'sqrt'; };
 
@@ -35,21 +35,24 @@
             var one_word_size = cursor.get_size() * 0.5;
 
             var member = cursor.get_size();
-            var top_n_length = cursor.get_measure(self.n).width;
             cursor.set_size(member * self.small_ratio);
-            var offset_length = top_n_length;
+            var top_n_length = cursor.get_measure(self.n).width;
+            var offset_length = (function(){
+                return top_n_length - one_word_size;
+            })();
             cursor.set_size(member);
 
             origin_x = origin_x + offset_length;
             cursor.draw_line(origin_x, origin_y - block_height * 0.15, origin_x + one_word_size * 0.5, origin_y - block_height * 0.5);
             cursor.draw_line(origin_x + one_word_size * 0.5, origin_y - block_height * 0.5, origin_x + one_word_size * 0.75, origin_y);
-            cursor.draw_line(origin_x + one_word_size * 0.75, origin_y, origin_x + one_word_size, origin_y - block_height * 2);
-            cursor.draw_line(origin_x + one_word_size, origin_y - block_height * 2, origin_x + one_word_size + inner_length, origin_y - block_height * 2);
+            cursor.draw_line(origin_x + one_word_size * 0.75, origin_y, origin_x + one_word_size, origin_y - block_height * 1.25);
+            cursor.draw_line(origin_x + one_word_size, origin_y - block_height * 1.25 , origin_x + one_word_size + inner_length, origin_y - block_height * 1.25);
 
             var member = cursor.get_size();
             cursor.set_size(member * self.small_ratio);
-            cursor.set_x(origin_x - offset_length + one_word_size * 0.9);
-            cursor.set_y(origin_y - block_height * 1.5);
+            var n_size = cursor.get_measure(self.n).width;
+            cursor.set_x(origin_x + one_word_size * 0.5 - n_size);
+            cursor.set_y(origin_y - block_height * 1.125);
             cursor.write_word(self.n);
             cursor.set_size(member);
 

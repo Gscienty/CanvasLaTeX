@@ -46,7 +46,7 @@
         };
 
         this.get_block_height = function(cursor){
-            return get_bottom_height(cursor) + get_operation_height(cursor) + cursor.get_size() * self.vertical_spacing;
+            return get_bottom_height(cursor) * 2 + get_operation_height(cursor) + cursor.get_size() * self.vertical_spacing;
         };
 
         this.block_render = function(cursor){
