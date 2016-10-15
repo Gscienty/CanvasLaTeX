@@ -4,7 +4,7 @@
     root.blocks.simple = {
         GetInstance : (innerWord, topBuf, bottomBuf) => {
             const smallRatio = 0.75;
-            const wordPointSpacing = 0.1;
+            const wordPointSpacing = 0.05;
             var self = {};
             self.innerWord = innerWord;
             self.top = (topBuf === undefined ? root.buf.CreateBuf() : topBuf);
@@ -40,15 +40,14 @@
                     cursor.SetSize(member.mul(smallRatio));
                     const torHeight = Math.max(self.top.GetHeight(cursor), self.bottom.GetHeight(cursor));
 
-                    cursor.SetPosition({ X : position.X.add(measure.Width).add(member.mul(wordPointSpacing)), Y : position.Y.add(torHeight.mul(0.25)) });
-
+                    cursor.SetPosition({ X : position.X.add(measure.Width).add(member.mul(wordPointSpacing)), Y : position.Y.add(measure.Height.mul(0.5)) });
                     self.bottom.Render(cursor);
 
-                    cursor.SetPosition({ X : position.X.add(measure.Width).add(member.mul(wordPointSpacing)), Y : position.Y.add(torHeight.mul(0.5)).add(-measure.Height) });
+                    cursor.SetPosition({ X : position.X.add(measure.Width).add(member.mul(wordPointSpacing)), Y : position.Y.add(-measure.Height.mul(0.5)) });
                     self.top.Render(cursor);
 
                     cursor.SetSize(member);
-                    cursor.SetPosition(position);
+                    cursor.SetPosition({ X : position.X, Y : position.Y.add(measure.Height.mul(0.5)) });
                     cursor.Write(self.innerWord);
 
                     cursor.SetPosition({ X : position.X.add(instance.GetWidth(cursor)), Y : 0 });

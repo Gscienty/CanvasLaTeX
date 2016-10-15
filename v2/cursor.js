@@ -6,7 +6,7 @@
             var self = {};
 
             self.context = canvas.getContext('2d');
-            self.size = 32;
+            self.size = 18;
             self.family = 'new times roman';
             self.color = 'black';
             self.style = 'normal';
@@ -24,12 +24,15 @@
                     if(position.Y != undefined) { self.position.Y = position.Y; };
                 },
 
+                GetStyle : () => { return self.style; },
+                SetStyle : (style) => { self.style = style; },
+
                 GetSize : () => { return self.size; },
                 SetSize : (size) => { self.size = size; },
                 
                 GetMeasure : (word) => {
                     self.Assemble();
-                    return { Width : self.context.measureText(word).width, Height : instance.GetSize() };
+                    return { Width : self.context.measureText(word).width, Height : instance.GetSize().mul(0.818) };
                 },
 
                 Write : (word) => {
