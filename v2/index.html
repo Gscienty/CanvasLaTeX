@@ -5,11 +5,13 @@
 <script src="blocks\geek.js"></script>
 <script src="blocks\style.js"></script>
 <script src="blocks\math\bigoperator.js"></script>
+<script src="blocks\math\binaryoperator.js"></script>
+<script src="blocks\math\frac.js"></script>
 <script src="blocks\bracket.js"></script>
 <meta charset="utf-8">
 <canvas width="400" id="cvs"></canvas>
 <script>
     var cursor = latex.cursor.GetInstance(document.getElementById('cvs'));
-    var buf = latex.buf.CreateBuf().TransferText('\\left\\{{\\right\\}{\\lim_{12}1.01^{365}北京邮电大学\\bigvee_{i=1}^{N}asd}}');
+    var buf = latex.buf.CreateBuf().TransferText('\\frac{1}{2}123');
     buf.Render(cursor);
 </script>

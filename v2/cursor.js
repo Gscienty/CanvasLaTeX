@@ -32,13 +32,19 @@
                 
                 GetMeasure : (word) => {
                     self.Assemble();
-                    return { Width : self.context.measureText(word).width, Height : instance.GetSize().mul(0.818) };
+                    return { Width : self.context.measureText(word).width, Height : instance.GetSize().mul(0.718) };
                 },
 
                 Write : (word) => {
                     self.Assemble();
                     self.context.fillText(word, self.position.X, self.position.Y);
                     self.position.X = self.position.X.add(instance.GetMeasure(word).Width);
+                },
+
+                DrawLine : (startPosition, endPosition) => {
+                    self.context.moveTo(startPosition.X, startPosition.Y);
+                    self.context.lineTo(endPosition.X, endPosition.Y);
+                    self.context.stroke();
                 }
             };
 
