@@ -39,7 +39,7 @@
         var instance = {
             Name : self.name,
             GetWidth : (cursor) => { return Math.max(self.GetBottomMeasure(cursor).Width, self.GetTopMeasure(cursor).Width, self.GetOperationMeasure(cursor).Width).add(cursor.GetSize().mul(self.leftSpacing)); },
-            GetHeight : (cursor) => { return Math.max(self.GetTopMeasure(cursor).Height, self.GetBottomMeasure(cursor).Height).mul(2).add(self.GetOperationMeasure(cursor).Height.mul(self.verticalSpacing.add(1))); },
+            GetHeight : (cursor) => { return Math.max(self.GetTopMeasure(cursor).Height, self.GetBottomMeasure(cursor).Height).mul(2).add(self.GetOperationMeasure(cursor).Height.mul(self.verticalSpacing.mul(2).add(1))); },
             Render : (cursor) => {
                 const member = cursor.GetSize();
                 const position = cursor.GetPosition();
@@ -58,7 +58,7 @@
                 cursor.SetPosition({ X : position.X.add(measure.Width.add(-bottomMeasure.Width).mul(0.5)), Y : position.Y.add(operationMeasure.Height.mul(0.5)).add(bottomMeasure.Height.mul(0.5)).add(measure.Height.mul(self.verticalSpacing)) });
                 self.bottomBuf.Render(cursor);
 
-                cursor.SetPosition({ X : position.X.add(measure.Width.add(-topMeasure.Width).mul(0.5)), Y : position.Y.add(-operationMeasure.Height.mul(0.5)).add(-topMeasure.Height.mul(0.5)) });
+                cursor.SetPosition({ X : position.X.add(measure.Width.add(-topMeasure.Width).mul(0.5)), Y : position.Y.add(-operationMeasure.Height.mul(0.5)).add(-topMeasure.Height.mul(0.5)).add(-measure.Height.mul(self.verticalSpacing)) });
                 self.topBuf.Render(cursor);
 
                 cursor.SetSize(member);
