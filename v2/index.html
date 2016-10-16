@@ -12,6 +12,6 @@
 <canvas width="400" id="cvs"></canvas>
 <script>
     var cursor = latex.cursor.GetInstance(document.getElementById('cvs'));
-    var buf = latex.buf.CreateBuf().TransferText('\\int_{\\frac{1}{2}}^{12}{ \\frac{1}{2} dx}');
+    var buf = latex.buf.CreateBuf().TransferText('\\oint_{\\frac{1}{2}}^{12}{ \\frac{1}{2} dx}');
     buf.Render(cursor);
 </script>

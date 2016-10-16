@@ -198,7 +198,7 @@
     };
 
     root.blocks.iint = {
-        Test : (alpha) => { return /^\\iint/.test(alpha); },
-        Build : (alpha) => { return OriginBuild(alpha, 5, 'iint', '∮'); }
+        Test : (alpha) => { return /^\\oint/.test(alpha); },
+        Build : (alpha) => { return OriginBuild(alpha, 5, 'oint', '∮'); }
     }
 })(this.latex);
