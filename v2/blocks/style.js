@@ -119,7 +119,7 @@
             const parameterLength = root.utils.GetParameterLength(a);
             return {
                 Remainder : a.substring(parameterLength + 2),
-                Instance : root.blocks.bf.GetInstance(root.buf.CreateBuf().TransferText(a.substr(4, parameterLength - 3)))
+                Instance : root.blocks.it.GetInstance(root.buf.CreateBuf().TransferText(a.substr(4, parameterLength - 3)))
             };
         }
     };

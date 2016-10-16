@@ -100,4 +100,15 @@
             };
         }
     };
+
+    //yes yes i'm lazybones
+    root.blocks.infty = {
+        Test : (alpha) => { return /^\\infty/.test(alpha); },
+        Build : (alpha) => {
+            return {
+                Remainder : alpha.substring(6),
+                Instance : root.blocks.simple.Build('∞')
+            };
+        }
+    }
 })(this.latex);

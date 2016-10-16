@@ -7,8 +7,8 @@
         self.bottomBuf = bottomBuf;
         self.operation = flag;
         self.smallRatio = 0.75;
-        self.bigRatio = 2;
-        self.verticalSpacing = 0;
+        self.bigRatio = 1.75;
+        self.verticalSpacing = 0.1;
         self.leftSpacing = 0.5;
         self.name = name;
 
@@ -38,8 +38,8 @@
 
         var instance = {
             Name : self.name,
-            GetWidth : (cursor) => { return Math.max(self.GetBottomMeasure(cursor).Width, self.GetTopMeasure(cursor).Width, self.GetOperationMeasure(cursor).Width); },
-            GetHeight : (cursor) => { return Math.max(self.GetTopMeasure(cursor).Height, self.GetBottomMeasure(cursor).Height).mul(2).add(self.GetOperationMeasure(cursor).Height); },
+            GetWidth : (cursor) => { return Math.max(self.GetBottomMeasure(cursor).Width, self.GetTopMeasure(cursor).Width, self.GetOperationMeasure(cursor).Width).add(cursor.GetSize().mul(self.leftSpacing)); },
+            GetHeight : (cursor) => { return Math.max(self.GetTopMeasure(cursor).Height, self.GetBottomMeasure(cursor).Height).mul(2).add(self.GetOperationMeasure(cursor).Height.mul(self.verticalSpacing.add(1))); },
             Render : (cursor) => {
                 const member = cursor.GetSize();
                 const position = cursor.GetPosition();
@@ -55,14 +55,14 @@
 
                 cursor.SetSize(member.mul(self.smallRatio));
 
-                cursor.SetPosition({ X : position.X.add(measure.Width.add(-bottomMeasure.Width).mul(0.5)), Y : position.Y.add(operationMeasure.Height.mul(0.5)).add(bottomMeasure.Height.mul(0.5)) });
+                cursor.SetPosition({ X : position.X.add(measure.Width.add(-bottomMeasure.Width).mul(0.5)), Y : position.Y.add(operationMeasure.Height.mul(0.5)).add(bottomMeasure.Height.mul(0.5)).add(measure.Height.mul(self.verticalSpacing)) });
                 self.bottomBuf.Render(cursor);
 
                 cursor.SetPosition({ X : position.X.add(measure.Width.add(-topMeasure.Width).mul(0.5)), Y : position.Y.add(-operationMeasure.Height.mul(0.5)).add(-topMeasure.Height.mul(0.5)) });
                 self.topBuf.Render(cursor);
 
                 cursor.SetSize(member);
-                cursor.SetPosition({ X : position.X.add(measure.Width).add(operationMeasure.Width.mul(self.leftSpacing)), Y : 0 });
+                cursor.SetPosition({ X : position.X.add(measure.Width).add(cursor.GetSize().mul(self.leftSpacing)), Y : 0 });
             }
         };
 
@@ -155,5 +155,10 @@
         Build : (alpha) => { return originBuild('bigotimes', '⊙', 10, alpha); },
         Test : (alpha) => { return /^\\bigotimes/.test(alpha); }
     };
+    //yes yes i'm lazybones
+    root.blocks.lim = {
+        Build : (alpha) => { return originBuild('lim', 'lim', 4, alpha); },
+        Test : (alpha) => { return /^\\lim/.test(alpha); }
 
+    }
 })(this.latex);
