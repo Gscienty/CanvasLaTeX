@@ -10,6 +10,6 @@
 <canvas width="400" id="cvs"></canvas>
 <script>
     var cursor = latex.cursor.GetInstance(document.getElementById('cvs'));
-    var buf = latex.buf.CreateBuf().TransferText('\\left{{\\right){\\lim_{12}1.01^{365}北京邮电大学\\bigvee_{i=1}^{N}asd}}');
+    var buf = latex.buf.CreateBuf().TransferText('\\left\\{{\\right\\}{\\lim_{12}1.01^{365}北京邮电大学\\bigvee_{i=1}^{N}asd}}');
     buf.Render(cursor);
 </script>

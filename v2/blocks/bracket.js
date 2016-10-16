@@ -26,12 +26,12 @@
 
             return instance;
         },
-        Test : (alpha) => { return /^\\left(\(|\[|\{)/.test(alpha); },
+        Test : (alpha) => { return /^\\left\\(\(|\[|\{)/.test(alpha); },
         Build : (alpha) => {
-            const parameterLength = root.utils.GetParameterLength(alpha.substring(6));
+            const parameterLength = root.utils.GetParameterLength(alpha.substring(7));
             return {
-                Remainder : alpha.substring(8 + parameterLength),
-                Instance : root.blocks.leftbracket.GetInstance(alpha[5], root.buf.CreateBuf().TransferText(alpha.substr(7, parameterLength)))
+                Remainder : alpha.substring(9 + parameterLength),
+                Instance : root.blocks.leftbracket.GetInstance(alpha[6], root.buf.CreateBuf().TransferText(alpha.substr(8, parameterLength)))
             };
         }
     };
@@ -62,12 +62,12 @@
 
             return instance;
         },
-        Test : (alpha) => { return /^\\right(\)|\]|\})/.test(alpha); },
+        Test : (alpha) => { return /^\\right\\(\)|\]|\})/.test(alpha); },
         Build : (alpha) => {
-            const parameterLength = root.utils.GetParameterLength(alpha.substring(7));
+            const parameterLength = root.utils.GetParameterLength(alpha.substring(8));
             return {
-                Remainder : alpha.substring(9 + parameterLength),
-                Instance : root.blocks.rightbracket.GetInstance(alpha[6], root.buf.CreateBuf().TransferText(alpha.substr(8, parameterLength)))
+                Remainder : alpha.substring(10 + parameterLength),
+                Instance : root.blocks.rightbracket.GetInstance(alpha[7], root.buf.CreateBuf().TransferText(alpha.substr(9, parameterLength)))
             };
         }
     };
